@@ -1,0 +1,81 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<name>MedicalDiagnosisFrontend</name>
+	<artifactId>MedicalDiagnosisFrontend</artifactId>
+	<groupId>pl.pwr</groupId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+					<compilerArguments>
+						<parameters />
+					</compilerArguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<webXml>src\WEB-INF\web.xml</webXml>
+					<webResources>
+						<resource>
+							<directory>src</directory>
+						</resource>
+					</webResources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>karmaUnitTestsJenkins</id>
+			<build>
+				<finalName>MedicalDiagnosisFrontend</finalName>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.5</version>
+						<executions>
+							<execution>
+								<id>exec-gen-sources</id>
+								<phase>test</phase>
+								<configuration>
+									<target name="Build Web">
+										<echo>--- KARMA UNIT TESTS ---</echo>
+										<exec executable="npm" dir="${project.basedir}/bower"
+											failonerror="false">
+											<arg line="install" />
+										</exec>
+
+										<exec executable="npm" dir="${project.basedir}/bower"
+											failonerror="false">
+											<arg line="run test-jenkins" />
+										</exec>
+
+									</target>
+								</configuration>
+								<goals>
+									<goal>run</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>
