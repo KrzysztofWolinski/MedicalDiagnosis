@@ -6,12 +6,12 @@ medicalDiagnosisApp
     .config([
         '$stateProvider',
         function($stateProvider) {
-            
+
             // TODO add otherwise
 
             $stateProvider
                 .state('home', {
-                	url: '/home',
+                    url: '/home',
                     views: {
                         'main': {
                             templateUrl: 'partials/home.html'
@@ -19,7 +19,7 @@ medicalDiagnosisApp
                     }
                 })
                 .state('about', {
-                	url: 'about',
+                    url: 'about',
                     views: {
                         'main': {
                             templateUrl: 'partials/about.html'

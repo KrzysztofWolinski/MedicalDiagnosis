@@ -4,23 +4,33 @@
 <head>
 
     <!-- CSS (load bootstrap) -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <style>
-        .navbar { border-radius:0; }
-    </style>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="css/neon/neon-core.css">
+    <link rel="stylesheet" href="css/neon/neon-theme.css">
+    <link rel="stylesheet" href="css/entypo.css">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- JS (load angular, ui-router, and our custom js file) -->
     <script src="bower_components/angular/angular.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="js/Router.js"></script>
 </head>
 
 <body>
     <div class="col-md-2"></div>
-    <div class="jumbotron col-md 8">
-        Hello
-        <a class="btn btn-green" ui-sref="home">Home</a>
-        <a class="btn btn-green" ui-sref="about">About</a>
+    <div class="jumbotron col-md-8">
+        <div class="text-center">
+            <h1>Welcome</h1>
+        </div>
+        <ul>
+            <li class="btn btn-lg btn-green" ui-sref="home">
+                <span class="glyphicon glyphicon-home"></span> Home
+            </li>
+
+            <li class="btn btn-lg btn-green" ui-sref="about">
+                <span class="glyphicon glyphicon-book"></span> About
+            </li>
+        </ul>
     </div>
     <div class="col-md-2"></div>
 
