@@ -1,9 +1,12 @@
-angular.module('medicalDiagnosis')
+'use strict';
+
+var medicalDiagnosisApp = angular.module('medicalDiagnosis', ['ui.router']);
+
+medicalDiagnosisApp
     .config([
         '$stateProvider',
         function($stateProvider) {
-            'use strict';
-
+            
             // TODO add otherwise
 
             $stateProvider
