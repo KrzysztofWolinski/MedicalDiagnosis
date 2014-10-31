@@ -7,7 +7,11 @@
     <meta name="author" content="Krzysztof Woliński" />
 
     <!-- Angular -->
-    <script src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <!-- Router -->
+    <script type="text/javascript" src="js/Router.js"></script>
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/bootstrap-3.2.0-dist/css/bootstrap.css">
@@ -15,11 +19,16 @@
 </head>
 
 <body>
-    <div class="col-md-10">
-        Test
+    <div class="col-md-2"></div>
+    <div class="jumbotron col-md 8">
+        Hello
+        <a class="btn btn-green" ui-sref="home">Home</a>
+        <a class="btn btn-green" ui-sref="about">About</a>
     </div>
-    <div class="col-md-2">
-        Test
+    <div class="col-md-2"></div>
+
+    <div class="col-md-12">
+        <div ui-view="main"></div>
     </div>
 </body>
 
