@@ -32,7 +32,7 @@ module.exports = function(grunt) {
 				base: 'src/',
 				keepalive: false,
 				open: {
-					target: 'https://localhost:8000/index.html?mock'
+					target: 'https://localhost:8000/index.html#home'
 				},
 				middleware: function(connect, options) {
 					var middlewares = [];

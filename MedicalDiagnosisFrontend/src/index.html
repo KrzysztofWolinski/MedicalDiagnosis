@@ -4,39 +4,48 @@
 <head>
 
     <!-- CSS (load bootstrap) -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="css/neon/neon-core.css">
-    <link rel="stylesheet" href="css/neon/neon-theme.css">
-    <link rel="stylesheet" href="css/entypo.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="./css/neon/neon-core.css">
+    <link rel="stylesheet" href="./css/neon/neon-theme.css">
+    <link rel="stylesheet" href="./css/entypo.css">
+    <link rel="stylesheet" href="./css/style.css">
 
     <!-- JS (load angular, ui-router, and our custom js file) -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="js/Router.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/homeController.js"></script>
+    <script src="js/controllers/mainController.js"></script>
 </head>
 
-<body>
-    <div class="col-md-2"></div>
-    <div class="jumbotron col-md-8">
+<body ng-controller="mainController">
+    <div ui-view="navigation"></div>
+
+    <div class="container-fluid">
         <div class="text-center">
             <h1>Welcome</h1>
         </div>
-        <ul>
-            <li class="btn btn-lg btn-green" ui-sref="home">
-                <span class="glyphicon glyphicon-home"></span> Home
-            </li>
+    </div>
 
-            <li class="btn btn-lg btn-green" ui-sref="about">
-                <span class="glyphicon glyphicon-book"></span> About
-            </li>
-        </ul>
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <!-- Customizable info/warning/error panel-->
+        <div class="alert alert-dismissible" ng-class="info.style" role="alert" ng-show="info.display">
+            <button type="button" class="close" data-dismiss="alert" ng-click="info.display=false">
+                <span aria-hidden="true">&times;</span>
+                <span class="sr-only">Close</span>
+            </button>
+            <strong>{{info.title}}</strong><p>{{info.contents}}</p>
+        </div>
+
+        <!-- Main view -->
+        <div ui-view="main"></div>
     </div>
     <div class="col-md-2"></div>
 
-    <div class="col-md-12">
-        <div ui-view="main"></div>
-    </div>
 </body>
 
 </html>

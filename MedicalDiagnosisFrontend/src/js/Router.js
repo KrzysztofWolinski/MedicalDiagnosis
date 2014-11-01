@@ -7,12 +7,13 @@ medicalDiagnosisApp
         '$stateProvider',
         function($stateProvider) {
 
-            // TODO add otherwise
-
             $stateProvider
                 .state('home', {
                     url: '/home',
                     views: {
+                        'navigation': {
+                            templateUrl: 'partials/navigation.html'
+                        },
                         'main': {
                             templateUrl: 'partials/home.html'
                         }
@@ -21,10 +22,15 @@ medicalDiagnosisApp
                 .state('about', {
                     url: 'about',
                     views: {
+                        'navigation': {
+                            templateUrl: 'partials/navigation.html'
+                        },
                         'main': {
                             templateUrl: 'partials/about.html'
                         }
                     }
                 });
+
+           
         }
     ]);
