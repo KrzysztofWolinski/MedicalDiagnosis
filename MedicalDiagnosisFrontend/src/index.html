@@ -18,6 +18,7 @@
     <!-- Controllers -->
     <script src="js/controllers/homeController.js"></script>
     <script src="js/controllers/mainController.js"></script>
+    <script src="js/controllers/notificationsController.js"></script>
 </head>
 
 <body ng-controller="mainController">
@@ -33,13 +34,7 @@
     <div class="col-md-8">
 
         <!-- Customizable info/warning/error panel-->
-        <div ng-repeat="info in infoList" class="alert alert-dismissible" ng-class="info.style" role="alert" ng-show="info.display">
-            <button type="button" class="close" data-dismiss="alert" ng-click="info.display=false">
-                <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
-            </button>
-            <strong>{{info.title}}</strong><p>{{info.contents}}</p>
-        </div>
+        <div ng-include="getNotificationPanel()"></div>
 
         <!-- Main view -->
         <div ui-view="main"></div>
