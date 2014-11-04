@@ -33,7 +33,7 @@
     <div class="col-md-8">
 
         <!-- Customizable info/warning/error panel-->
-        <div class="alert alert-dismissible" ng-class="info.style" role="alert" ng-show="info.display">
+        <div ng-repeat="info in infoList" class="alert alert-dismissible" ng-class="info.style" role="alert" ng-show="info.display">
             <button type="button" class="close" data-dismiss="alert" ng-click="info.display=false">
                 <span aria-hidden="true">&times;</span>
                 <span class="sr-only">Close</span>
