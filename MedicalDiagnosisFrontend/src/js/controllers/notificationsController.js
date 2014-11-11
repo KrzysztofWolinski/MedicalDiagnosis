@@ -10,6 +10,10 @@ angular.module('medicalDiagnosis')
 				$rootScope.infoList = [];
 			};
 
+			$scope.deleteNotification = function(index) {
+				$rootScope.infoList.splice(index, 1);
+			};
+
 			$scope.getInfoListSize = function() {
 				return $rootScope.infoList.length;
 			};

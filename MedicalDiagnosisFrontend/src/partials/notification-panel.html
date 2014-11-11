@@ -2,11 +2,11 @@
     <div ng-show="getInfoListSize() > 0" class="text-right">
         <button class="btn btn-red" ng-click="deleteAll()">
         	<div class="glyphicon glyphicon-trash"></div>
-        	Delete all notifications
+        	Delete all
         </button>
     </div>
     <div ng-repeat="info in infoList" class="alert alert-dismissible" ng-class="info.style" role="alert" ng-show="info.display">
-        <button type="button" class="close" data-dismiss="alert" ng-click="info.display=false">
+        <button type="button" class="close" data-dismiss="alert" ng-click="deleteNotification($index)">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
         </button>
