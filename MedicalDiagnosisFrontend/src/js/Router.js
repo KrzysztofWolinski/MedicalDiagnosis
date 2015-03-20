@@ -19,6 +19,28 @@ medicalDiagnosisApp
                         }
                     }
                 })
+                .state('diagnosis', {
+                    url: 'diagnosis',
+                    views: {
+                        'navigation': {
+                            templateUrl: 'partials/navigation.html'
+                        },
+                        'main': {
+                            templateUrl: 'partials/diagnosis.html'
+                        }
+                    }
+                })
+                .state('profile', {
+                    url: 'profile',
+                    views: {
+                        'navigation': {
+                            templateUrl: 'partials/navigation.html'
+                        },
+                        'main': {
+                            templateUrl: 'partials/profile.html'
+                        }
+                    }
+                })
                 .state('about', {
                     url: 'about',
                     views: {
