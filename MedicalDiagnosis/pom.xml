@@ -3,7 +3,7 @@
 	
 	<modelVersion>4.0.0</modelVersion>
 	<name>medical-diagnosis</name>
-	<groupId>pl.bodziowagh</groupId>
+	<groupId>com.bodziowagh</groupId>
 	<artifactId>medical-diagnosis</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>

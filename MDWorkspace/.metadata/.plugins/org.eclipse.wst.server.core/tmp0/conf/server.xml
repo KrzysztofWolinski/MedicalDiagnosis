@@ -124,7 +124,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="/home/wagh/Studia/Magisterka/Project/MDWorkspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ROOT" path="" reloadable="false"/><Context docBase="/home/wagh/Studia/Magisterka/Project/MDWorkspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/medical-diagnosis-integration" path="/medical-diagnosis-integration" reloadable="true" source="org.eclipse.jst.j2ee.server:medical-diagnosis-integration"/><Context docBase="/home/wagh/Studia/Magisterka/Project/MDWorkspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/example-spring-initializer" path="/example-spring-initializer" reloadable="true" source="org.eclipse.jst.jee.server:example-spring-initializer"/></Host>
+      <Context docBase="/home/wagh/Studia/Magisterka/Project/MDWorkspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/ROOT" path="" reloadable="false"/><Context docBase="/home/wagh/Studia/Magisterka/Project/MDWorkspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/medical-diagnosis-integration" path="/medical-diagnosis-integration" reloadable="true" source="org.eclipse.jst.jee.server:medical-diagnosis-integration"/></Host>
     </Engine>
   </Service>
 </Server>

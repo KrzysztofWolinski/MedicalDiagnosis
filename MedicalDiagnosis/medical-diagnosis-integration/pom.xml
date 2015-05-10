@@ -5,18 +5,14 @@
     <artifactId>medical-diagnosis-integration</artifactId>
     <packaging>war</packaging>
     <name>Medical Diagnosis Integration</name>
+	<groupId>com.bodziowagh</groupId>
+	<version>0.0.1-SNAPSHOT</version>
+	
     <properties>
         <spring.version>4.0.2.RELEASE</spring.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-
-	<parent>
-		<groupId>pl.bodziowagh</groupId>
-		<artifactId>medical-diagnosis</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
-	</parent>
 
     <dependencies>
 
@@ -26,13 +22,6 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        
-        <dependency>
-			<groupId>org.springframework.data</groupId>
-			<artifactId>spring-data-commons</artifactId>
-			<version>1.6.1.RELEASE</version>
-		</dependency>
-		        
 
         <!-- JavaEE APIs -->
         <dependency>

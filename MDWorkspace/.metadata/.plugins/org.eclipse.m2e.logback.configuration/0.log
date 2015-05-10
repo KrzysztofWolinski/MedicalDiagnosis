@@ -1432,3 +1432,95 @@ Caused by: org.eclipse.core.runtime.CoreException: One or more constraints have 
 2015-05-10 12:41:57,660 [Worker-10] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of medical-diagnosis-integration
 2015-05-10 12:41:57,661 [Worker-10] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for medical-diagnosis-integration
 2015-05-10 12:41:57,666 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:51:18,470 [Worker-19] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.bodziowagh:medical-diagnosis-integration:0.0.1-SNAPSHOT @ /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/pom.xml.
+2015-05-10 12:51:40,615 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:51:40,616 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/main/resources
+2015-05-10 12:51:40,617 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:51:40,617 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/test/resources
+2015-05-10 12:51:40,617 [Worker-26] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of medical-diagnosis-integration
+2015-05-10 12:51:40,617 [Worker-26] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for medical-diagnosis-integration
+2015-05-10 12:51:40,625 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:52:19,043 [Worker-23] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.bodziowagh:medical-diagnosis-integration:0.0.1-SNAPSHOT @ /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/pom.xml.
+2015-05-10 12:52:19,275 [Worker-23] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /medical-diagnosis-integration/src/main/java
+2015-05-10 12:52:19,276 [Worker-23] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /medical-diagnosis-integration/src/test/java
+2015-05-10 12:52:19,937 [Worker-23] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 1 sec
+2015-05-10 12:52:21,066 [Worker-14] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.bodziowagh:medical-diagnosis-integration:0.0.1-SNAPSHOT @ /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/pom.xml.
+2015-05-10 12:52:26,876 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:52:26,877 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/main/resources
+2015-05-10 12:52:26,878 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:52:26,878 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/test/resources
+2015-05-10 12:52:51,977 [Worker-24] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2015-05-10 12:52:52,144 [Worker-24] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.bodziowagh:medical-diagnosis-integration:0.0.1-SNAPSHOT @ /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/pom.xml.
+2015-05-10 12:52:52,249 [Worker-24] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /medical-diagnosis-integration/src/main/java
+2015-05-10 12:52:52,249 [Worker-24] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /medical-diagnosis-integration/src/test/java
+2015-05-10 12:52:52,511 [Worker-24] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.bodziowagh:medical-diagnosis-integration:0.0.1-SNAPSHOT @ /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/pom.xml.
+2015-05-10 12:52:52,562 [Worker-24] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Cleaning filtered folder for medical-diagnosis-integration
+2015-05-10 12:52:52,566 [Worker-24] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 0 sec
+2015-05-10 12:52:53,531 [Worker-26] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.bodziowagh:medical-diagnosis-integration:0.0.1-SNAPSHOT @ /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/pom.xml.
+2015-05-10 12:53:16,570 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:53:16,570 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/main/resources
+2015-05-10 12:53:16,571 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:53:16,571 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/test/resources
+2015-05-10 12:54:00,325 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:54:00,325 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/main/resources
+2015-05-10 12:54:00,326 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:54:00,327 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/test/resources
+2015-05-10 12:56:15,428 [Worker-27] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://nexus.cohesiva.com:8080/nexus/content/repositories/releases/com/bodziowagh/medical-diagnosis/0.0.1-SNAPSHOT/maven-metadata.xml
+2015-05-10 12:56:15,497 [Worker-27] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://nexus.cohesiva.com:8080/nexus/content/repositories/releases/com/bodziowagh/medical-diagnosis/0.0.1-SNAPSHOT/medical-diagnosis-0.0.1-SNAPSHOT.pom
+2015-05-10 12:56:36,472 [Worker-22] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using NULL lifecycle mapping for MavenProject: com.bodziowagh:medical-diagnosis:0.0.1-SNAPSHOT @ /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/pom.xml.
+2015-05-10 12:56:36,487 [Worker-22] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.bodziowagh:medical-diagnosis-integration:0.0.1-SNAPSHOT @ /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/pom.xml.
+2015-05-10 12:56:36,951 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:56:36,951 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/main/resources
+2015-05-10 12:56:36,952 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:56:36,952 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/test/resources
+2015-05-10 12:56:36,952 [Worker-10] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of medical-diagnosis-integration
+2015-05-10 12:56:36,952 [Worker-10] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for medical-diagnosis-integration
+2015-05-10 12:56:36,959 [Worker-10] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:56:48,636 [Worker-10] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.bodziowagh:medical-diagnosis-integration:0.0.1-SNAPSHOT @ /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/pom.xml.
+2015-05-10 12:56:51,276 [Worker-23] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.bodziowagh:medical-diagnosis-integration:0.0.1-SNAPSHOT @ /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/pom.xml.
+2015-05-10 12:57:04,909 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:57:04,909 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/main/resources
+2015-05-10 12:57:04,910 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:57:04,910 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/test/resources
+2015-05-10 12:57:04,911 [Worker-19] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of medical-diagnosis-integration
+2015-05-10 12:57:04,911 [Worker-19] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for medical-diagnosis-integration
+2015-05-10 12:57:04,915 [Worker-19] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 12:57:59,830 [Worker-25] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: eu.kielczewski.example.spring:example-spring-initializer:1.0-SNAPSHOT @ /home/wagh/Studia/Magisterka/sample-spring-mvc/example-spring-mvc-initializer/pom.xml.
+2015-05-10 12:58:00,081 [Worker-25] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /example-spring-initializer/src/main/java
+2015-05-10 12:58:00,082 [Worker-25] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /example-spring-initializer/src/test/java
+2015-05-10 12:58:00,130 [Worker-25] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 0 sec
+2015-05-10 12:58:00,658 [Worker-19] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: eu.kielczewski.example.spring:example-spring-initializer:1.0-SNAPSHOT @ /home/wagh/Studia/Magisterka/sample-spring-mvc/example-spring-mvc-initializer/pom.xml.
+2015-05-10 13:00:02,672 [Worker-14] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: com.bodziowagh:medical-diagnosis-integration:0.0.1-SNAPSHOT @ /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/pom.xml.
+2015-05-10 13:00:31,853 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:00:31,853 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/sample-spring-mvc/example-spring-mvc-initializer/src/main/resources
+2015-05-10 13:00:31,854 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:00:31,854 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/sample-spring-mvc/example-spring-mvc-initializer/src/test/resources
+2015-05-10 13:00:31,905 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:00:31,920 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/main/resources
+2015-05-10 13:00:31,921 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:00:31,921 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/test/resources
+2015-05-10 13:00:31,922 [Worker-24] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Changed resources require a complete clean of filtered resources of medical-diagnosis-integration
+2015-05-10 13:00:31,922 [Worker-24] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for medical-diagnosis-integration
+2015-05-10 13:00:31,927 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:01:52,195 [Worker-24] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: eu.kielczewski.example.spring:example-spring-initializer:1.0-SNAPSHOT @ /home/wagh/Studia/Magisterka/sample-spring-mvc/example-spring-mvc-initializer/pom.xml.
+2015-05-10 13:01:52,578 [Worker-24] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /example-spring-initializer/src/main/java
+2015-05-10 13:01:52,578 [Worker-24] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /example-spring-initializer/src/test/java
+2015-05-10 13:01:52,620 [Worker-24] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Imported and configured 1 project(s) in 0 sec
+2015-05-10 13:01:53,216 [Worker-28] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: eu.kielczewski.example.spring:example-spring-initializer:1.0-SNAPSHOT @ /home/wagh/Studia/Magisterka/sample-spring-mvc/example-spring-mvc-initializer/pom.xml.
+2015-05-10 13:03:05,376 [Worker-25] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: eu.kielczewski.example.spring:example-spring-initializer:1.0-SNAPSHOT @ /home/wagh/Studia/Magisterka/sample-spring-mvc/example-spring-mvc-initializer/pom.xml.
+2015-05-10 13:03:08,065 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:03:08,066 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/sample-spring-mvc/example-spring-mvc-initializer/src/main/resources
+2015-05-10 13:03:08,067 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:03:08,068 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/sample-spring-mvc/example-spring-mvc-initializer/src/test/resources
+2015-05-10 13:05:22,144 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:05:22,145 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/main/resources
+2015-05-10 13:05:22,146 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:05:22,146 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/test/resources
+2015-05-10 13:06:01,659 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:06:01,659 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/main/resources
+2015-05-10 13:06:01,661 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:06:01,661 [Worker-14] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/test/resources
+2015-05-10 13:07:28,915 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:07:28,916 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/main/resources
+2015-05-10 13:07:28,917 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-05-10 13:07:28,917 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/medical-diagnosis-integration/src/test/resources
