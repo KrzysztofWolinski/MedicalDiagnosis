@@ -5,8 +5,13 @@
     <artifactId>medical-diagnosis-integration</artifactId>
     <packaging>war</packaging>
     <name>Medical Diagnosis Integration</name>
-	<groupId>com.bodziowagh</groupId>
-	<version>0.0.1-SNAPSHOT</version>
+	
+	<parent>
+		<groupId>com.bodziowagh</groupId>
+		<artifactId>medical-diagnosis</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
 	
     <properties>
         <spring.version>4.0.2.RELEASE</spring.version>
@@ -16,6 +21,15 @@
 
     <dependencies>
 
+		<!-- Internal -->
+		<!-- 
+		<dependency>
+			<groupId>com.bodziowagh</groupId>
+			<artifactId>medical-diagnosis-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		 -->
+		
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -29,6 +43,12 @@
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
         </dependency>
+        
+        <dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
 
     </dependencies>
 

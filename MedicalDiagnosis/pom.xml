@@ -9,6 +9,7 @@
 	<packaging>pom</packaging>
 	
 	<modules>
+		<module>medical-diagnosis-core</module>
 		<module>medical-diagnosis-integration</module>
 	</modules>
 
