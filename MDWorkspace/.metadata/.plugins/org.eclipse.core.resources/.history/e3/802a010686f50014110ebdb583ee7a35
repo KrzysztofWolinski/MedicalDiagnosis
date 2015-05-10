@@ -1,0 +1,140 @@
+package com.meddiag.config;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Properties;
+import java.util.TimeZone;
+
+import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration.AccessLevel;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
+
+@Configuration
+@EnableWebMvc
+@EnableSpringDataWebSupport
+@EnableJsonView
+@ComponentScan(basePackages = { "com.meddiag.controller" })
+@PropertySources({ @PropertySource("classpath:properties/domenomania.properties"),
+		@PropertySource(ignoreResourceNotFound = true, value = "file:${user.home}/domenomania.properties"),
+		@PropertySource(ignoreResourceNotFound = true, value = "${domenomania.properties.location}") })
+public class RootConfig extends WebMvcConfigurerAdapter {
+
+	@Override
+	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+		argumentResolvers.add(new SpecificationArgumentResolver());
+	}
+
+	@Bean
+	public VelocityEngine velocityEngine() {
+		final VelocityEngine velocityEngine = new VelocityEngine();
+		velocityEngine.addProperty("resource.loader", "class");
+		velocityEngine.addProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+		return velocityEngine;
+	}
+
+	@Bean
+	public MailService mailService() {
+		return new MailServiceImpl();
+	}
+
+	@Bean
+	public JavaMailSender mailSender(@Value("${mail.host:localhost}") String host, @Value("${mail.port:25}") int port,
+			@Value("${mail.username:null}") String username, @Value("${mail.password:null}") String password) {
+		final JavaMailSenderImpl javaMailSenderImpl = new JavaMailSenderImpl();
+		javaMailSenderImpl.setDefaultEncoding("UTF-8");
+		javaMailSenderImpl.setHost(host);
+		javaMailSenderImpl.setPort(port);
+		javaMailSenderImpl.setPassword(password);
+		javaMailSenderImpl.setUsername(username);
+
+		final Properties javaMailProperties = new Properties();
+		javaMailProperties.put("mail.smtp.auth", "true");
+		// javaMailProperties.put("mail.smtp.localhost", host);
+		javaMailSenderImpl.setJavaMailProperties(javaMailProperties);
+		return javaMailSenderImpl;
+	}
+
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		final ModelMapper modelMapper = new ModelMapper();
+		modelMapper.getConfiguration().setFieldAccessLevel(AccessLevel.PRIVATE);
+		return modelMapper;
+	}
+
+	@Bean
+	public MultipartResolver multipartResolver() {
+		return new StandardServletMultipartResolver();
+	}
+
+	@Bean
+	public PdfGenerator pdfGenerator() {
+		final StrategyBasedPdfGeneratorImpl strategyBasedPdfGeneratorImpl = new StrategyBasedPdfGeneratorImpl();
+		strategyBasedPdfGeneratorImpl.register(Invoice.class, invoicePdfGeneratorImpl());
+		strategyBasedPdfGeneratorImpl.register(Order.class, agreementPdfGeneratorImpl());
+		strategyBasedPdfGeneratorImpl.register(DomainRequest.class, offerPdfGeneratorImpl());
+		return strategyBasedPdfGeneratorImpl;
+	}
+
+	@Bean
+	public InvoicePdfGeneratorImpl invoicePdfGeneratorImpl() {
+		return new InvoicePdfGeneratorImpl();
+	}
+
+	@Bean
+	public OfferPdfGeneratorImpl offerPdfGeneratorImpl() {
+		return new OfferPdfGeneratorImpl();
+	}
+
+	@Bean
+	public AgreementPdfGeneratorImpl agreementPdfGeneratorImpl() {
+		return new AgreementPdfGeneratorImpl();
+	}
+
+	@Bean
+	public ObjectMapper pdfGeneratorObjectMapper() {
+		final ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+		mapper.configure(SerializationFeature.WRITE_BIGDECIMAL_AS_PLAIN, true);
+		mapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, true);
+		mapper.configure(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS, true);
+		mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
+		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
+		final SimpleModule module = new SimpleModule();
+		module.addSerializer(BigDecimal.class, new JsonSerializer<BigDecimal>() {
+			@Override
+			public void serialize(BigDecimal value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+				String valueString = null;
+				if (value != null) {
+					valueString = value.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString().replaceAll("\\.", ",");
+				}
+				jgen.writeString(valueString);
+			}
+		});
+		mapper.registerModule(module);
+		mapper.setTimeZone(TimeZone.getDefault());
+		mapper.registerModule(new JSR310Module());
+		return mapper;
+	}
+
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		converters.add(new StringHttpMessageConverter());
+	}
+}

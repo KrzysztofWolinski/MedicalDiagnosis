@@ -1,0 +1,11 @@
+127.0.0.1 - - [10/May/2015:12:10:43 +0200] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [10/May/2015:12:11:04 +0200] "GET /medical-diagnosis-integration/ HTTP/1.1" 404 1054
+127.0.0.1 - - [10/May/2015:12:11:04 +0200] "GET /favicon.ico HTTP/1.1" 404 1016
+127.0.0.1 - - [10/May/2015:12:11:04 +0200] "GET /favicon.ico HTTP/1.1" 404 1016
+127.0.0.1 - - [10/May/2015:12:42:11 +0200] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [10/May/2015:12:42:20 +0200] "GET /medical-diagnosis-integration/ HTTP/1.1" 404 1054
+127.0.0.1 - - [10/May/2015:12:42:22 +0200] "GET /medical-diagnosis-integration/ HTTP/1.1" 404 1054
+127.0.0.1 - - [10/May/2015:12:42:26 +0200] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [10/May/2015:12:42:32 +0200] "GET /medical-diagnosis-integration/ HTTP/1.1" 404 1054
+127.0.0.1 - - [10/May/2015:12:43:01 +0200] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [10/May/2015:12:43:11 +0200] "GET /example-spring-initializer HTTP/1.1" 200 11
