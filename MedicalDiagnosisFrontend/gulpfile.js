@@ -18,15 +18,13 @@ gulp.task('openbrowser', function() {
 });
 
 gulp.task('browser-sync', function() {
-    var meddiagProxyOptions = url.parse('https://localhost:8080/medical-diagnosis-integration');
+    var meddiagProxyOptions = url.parse('http://localhost:8080/medical-diagnosis-integration');
     meddiagProxyOptions.route = '/medical-diagnosis-integration';
-    meddiagProxyOptions.rejectUnauthorized = false;
 
     browserSync({
         open: false,
         port: server.port,
         https: true,
-        livereload: false,
         server: {
             baseDir: './src/',
             middleware: [proxy(meddiagProxyOptions)]
