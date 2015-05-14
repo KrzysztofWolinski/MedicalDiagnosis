@@ -14,7 +14,7 @@ var server = {
 gulp.task('default', ['browser-sync', 'openbrowser']);
 
 gulp.task('openbrowser', function() {
-    opn('https://' + server.host + ':' + server.port + '/index.html');
+    opn('https://' + server.host + ':' + server.port + '/index.html#/home');
 });
 
 gulp.task('browser-sync', function() {
