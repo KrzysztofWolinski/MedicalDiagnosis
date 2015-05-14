@@ -14,10 +14,10 @@
 	</section>
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="/home/wagh/Studia/Magisterka/Project/MedicalDiagnosis"/>
 			<item value="/home/wagh/Studia/Magisterka/sample-spring-mvc"/>
 			<item value="/home/wagh/Studia/Magisterka/Project"/>
 			<item value="/home/wagh/Studia/Magisterka/Project/MedicalDiagnosis/mad-diag-integration"/>
-			<item value="/home/wagh/Studia/Magisterka/Project/MedicalDiagnosis"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>

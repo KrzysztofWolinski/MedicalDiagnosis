@@ -1,8 +1,8 @@
-/MedicalDiagnosisFrontend/node_modules/*
-/MedicalDiagnosisFrontend/npm-debug.log
-/MedicalDiagnosisFrontend/bower_components/*
+MedicalDiagnosisFrontend/node_modules/**
+MedicalDiagnosisFrontend/npm-debug.log
+MedicalDiagnosisFrontend/bower_components/**
 
 MedicalDiagnosis/medical-diagnosis-integration/.classpath
 MedicalDiagnosis/medical-diagnosis-integration/.project
 
-/MDWorkspace/*
+MDWorkspace/**

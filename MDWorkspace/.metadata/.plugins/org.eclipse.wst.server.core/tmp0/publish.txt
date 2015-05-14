@@ -1,2 +1,4 @@
 #Tomcat publish data
-#Sun May 10 13:07:36 CEST 2015
+#Thu May 14 12:09:02 CEST 2015
+org.eclipse.jst.jee.server\:/binary\:/home/wagh/.m2/repository/org/springframework/spring-web/4.0.2.RELEASE/spring-web-4.0.2.RELEASE.jar=WEB-INF/lib/spring-web-4.0.2.RELEASE.jar
+org.eclipse.jst.jee.server\:medical-diagnosis-core=WEB-INF/lib/medical-diagnosis-core-0.0.1-SNAPSHOT.jar
