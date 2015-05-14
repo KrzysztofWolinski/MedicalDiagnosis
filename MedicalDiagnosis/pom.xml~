@@ -8,12 +8,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
-	<properties>
-        <spring.version>4.0.2.RELEASE</spring.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    </properties>
-	
 	<modules>
 		<module>medical-diagnosis-core</module>
 		<module>medical-diagnosis-integration</module>

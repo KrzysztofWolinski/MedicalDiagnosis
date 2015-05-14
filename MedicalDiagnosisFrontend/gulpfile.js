@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var url = require('url');
 var opn = require('opn');
+var proxy = require('proxy-middleware');
 var browserSync = require("browser-sync");
 
 var server = {
@@ -17,13 +18,18 @@ gulp.task('openbrowser', function() {
 });
 
 gulp.task('browser-sync', function() {
+    var meddiagProxyOptions = url.parse('https://localhost:8080/medical-diagnosis-integration');
+    meddiagProxyOptions.route = '/medical-diagnosis-integration';
+    meddiagProxyOptions.rejectUnauthorized = false;
+
     browserSync({
         open: false,
         port: server.port,
         https: true,
         livereload: false,
         server: {
-            baseDir: './src/'
+            baseDir: './src/',
+            middleware: [proxy(meddiagProxyOptions)]
         }
     });
 });
