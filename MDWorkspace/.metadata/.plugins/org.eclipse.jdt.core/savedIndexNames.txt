@@ -1,4 +1,0 @@
-INDEX VERSION 1.127+/home/wagh/Studia/Magisterka/Project/MDWorkspace/.metadata/.plugins/org.eclipse.jdt.core
-3354436537.index
-829938880.index
-4116436035.index

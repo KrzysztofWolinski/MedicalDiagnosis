@@ -1,3 +1,0 @@
-INDEX VERSION 1.127
-/home/wagh/Studia/Magisterka/Project/MDWorkspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/1663558380.index
-/medical-diagnosis-integration/src/main/resources
