@@ -1,4 +1,4 @@
-package com.bodziowagh.initializer;
+package com.medica.integration.config.initializer;
 
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
@@ -12,7 +12,7 @@ import javax.servlet.ServletRegistration;
 
 public class AppInitializer implements WebApplicationInitializer {
 
-    private static final String CONFIG_LOCATION = "com.bodziowagh.config";
+    private static final String CONFIG_LOCATION = "com.medica.integration.config";
     private static final String MAPPING_URL = "/*";
 
     @Override

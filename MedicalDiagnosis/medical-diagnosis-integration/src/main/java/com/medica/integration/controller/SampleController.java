@@ -1,11 +1,13 @@
-package com.bodziowagh.controller;
+package com.medica.integration.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.bodziowagh.sample.SampleService;
+import com.medica.core.service.sample.SampleService;
+
+
 
 @Controller
 class SampleController {
