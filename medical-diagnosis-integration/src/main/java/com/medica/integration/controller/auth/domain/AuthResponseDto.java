@@ -1,4 +1,5 @@
-package com.medica.integration.domain.auth;
+package com.medica.integration.controller.auth.domain;
+
 
 public class AuthResponseDto {
 

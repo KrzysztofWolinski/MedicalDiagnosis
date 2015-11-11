@@ -1,4 +1,4 @@
-package com.medica.integration.domain.auth;
+package com.medica.integration.controller.auth.domain;
 
 public enum AuthResponseStatus {
 

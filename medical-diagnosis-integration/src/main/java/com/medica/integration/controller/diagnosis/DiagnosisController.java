@@ -1,4 +1,4 @@
-package com.medica.integration.controller;
+package com.medica.integration.controller.diagnosis;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

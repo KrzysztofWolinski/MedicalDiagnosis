@@ -1,4 +1,4 @@
-package com.medica.integration.controller;
+package com.medica.integration.controller.history;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

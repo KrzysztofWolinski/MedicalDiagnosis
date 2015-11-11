@@ -1,13 +1,13 @@
-package com.medica.integration.controller;
+package com.medica.integration.controller.auth;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.medica.integration.domain.auth.AuthRequestDto;
-import com.medica.integration.domain.auth.AuthResponseDto;
-import com.medica.integration.domain.auth.AuthResponseStatus;
+import com.medica.integration.controller.auth.domain.AuthRequestDto;
+import com.medica.integration.controller.auth.domain.AuthResponseDto;
+import com.medica.integration.controller.auth.domain.AuthResponseStatus;
 
 @RestController
 @RequestMapping("/auth")
