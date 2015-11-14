@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.medica.integration.controller.auth.domain.AuthRequestDto;
 import com.medica.integration.controller.auth.domain.AuthResponseDto;
-import com.medica.integration.controller.auth.domain.AuthResponseStatus;
+import com.medica.integration.controller.auth.domain.AuthenticationStatus;
 import com.medica.integration.service.auth.AuthService;
+import com.medica.integration.service.auth.domain.AuthenticationCheckResult;
 import com.medica.integration.service.auth.exceptions.InvalidCredentialsException;
 
 @RestController
@@ -30,10 +31,10 @@ public class AuthController {
 		try {
 			String token = authService.login(request.getUsername(), request.getPassword());
 			
-			response.setStatus(AuthResponseStatus.OK);
+			response.setStatus(AuthenticationStatus.OK);
 			response.setToken(token);
 		} catch(InvalidCredentialsException e) {
-			response.setStatus(AuthResponseStatus.ERROR);
+			response.setStatus(AuthenticationStatus.INVALID);
 			response.setToken("");
 		}
 		
@@ -46,9 +47,9 @@ public class AuthController {
 
 		try {
 			authService.logout(request.getUsername(), request.getToken());
-			response.setStatus(AuthResponseStatus.OK);
+			response.setStatus(AuthenticationStatus.OK);
 		} catch (InvalidCredentialsException e) {
-			response.setStatus(AuthResponseStatus.ERROR);
+			response.setStatus(AuthenticationStatus.INVALID);
 		}		
 		
 		return response;
@@ -58,13 +59,19 @@ public class AuthController {
 	public AuthResponseDto checkAuthorization(@RequestBody AuthRequestDto request) {
 		AuthResponseDto response = new AuthResponseDto();
 
-		boolean authenticated = authService.checkAuthentication(request.getUsername(), request.getToken());
+		AuthenticationCheckResult result = authService.checkAuthentication(request.getUsername(), request.getToken());
 
-		if (authenticated) {
-			response.setStatus(AuthResponseStatus.OK);
-		} else {
-			response.setStatus(AuthResponseStatus.ERROR);
-		}				
+		if (result.isStatus(AuthenticationStatus.OK)) {
+			// User authenticated
+			response.setStatus(AuthenticationStatus.OK);
+		} else if (result.isStatus(AuthenticationStatus.EXPIRED)) {
+			// Session expired, update token
+			response.setToken(result.getNewToken());
+			response.setStatus(AuthenticationStatus.OK);
+		} else if (result.isStatus(AuthenticationStatus.INVALID)) {
+			// Invalid token/username
+			response.setStatus(AuthenticationStatus.INVALID);
+		} 
 		
 		return response;
 	}

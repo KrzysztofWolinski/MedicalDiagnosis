@@ -1,13 +1,14 @@
 package com.medica.integration.controller.auth.domain;
 
-public enum AuthResponseStatus {
+public enum AuthenticationStatus {
 
 	OK("OK"),
-	ERROR("ERROR");
+	EXPIRED("EXPIRED"),
+	INVALID("INVALID");
 	
 	private final String status;
 	
-	AuthResponseStatus(String status) {
+	AuthenticationStatus(String status) {
 		this.status = status;
 	}
 	

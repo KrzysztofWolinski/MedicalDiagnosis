@@ -8,6 +8,7 @@ import com.medica.integration.domain.user.Credentials;
 import com.medica.integration.repository.CredentialsRepository;
 import com.medica.integration.service.auth.AuthService;
 import com.medica.integration.service.auth.TokenGeneratorService;
+import com.medica.integration.service.auth.domain.AuthenticationCheckResult;
 import com.medica.integration.service.auth.exceptions.InvalidCredentialsException;
 
 public class AuthServiceImpl implements AuthService {
@@ -23,10 +24,7 @@ public class AuthServiceImpl implements AuthService {
 		Credentials credentials = credentialsRepository.findByUsername(username);
 		
 		if ((credentials != null) && (credentials.getPassword().equals(password))) {
-			credentials.setToken(tokenGeneratorService.generateToken());
-			credentials.setTokenExpirationTime(tokenGeneratorService.generateTokenExpirationTime());
-			
-			credentialsRepository.saveAndFlush(credentials);
+			updateToken(credentials);
 			
 			return credentials.getToken();
 		} else {
@@ -49,20 +47,28 @@ public class AuthServiceImpl implements AuthService {
 	}
 
 	@Override
-	public boolean checkAuthentication(String username, String token) {
+	public AuthenticationCheckResult checkAuthentication(String username, String token) {
 		Credentials credentials = credentialsRepository.findByUsername(username);
+		AuthenticationCheckResult result = new AuthenticationCheckResult();
 		
 		if ((credentials != null) && (credentials.getToken().equals(token))) {
 			if ((credentials.getTokenExpirationTime() != null) && (credentials.getTokenExpirationTime().after(new Date()))) {
-				return true;
+				return result.withStatusOk();
 			} else {
-				// TODO session expired
-				return false;
+				updateToken(credentials);
+				
+				return result.withStatusExpired(credentials.getToken());
 			}
 		} else {
-			// TODO Bad credentials
-			return false;
+			return result.withStatusInvalid();
 		}
 	}
 
+	private void updateToken(Credentials credentials) {
+		credentials.setToken(tokenGeneratorService.generateToken());
+		credentials.setTokenExpirationTime(tokenGeneratorService.generateTokenExpirationTime());
+		
+		credentialsRepository.saveAndFlush(credentials);
+	}
+	
 }

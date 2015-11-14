@@ -3,15 +3,15 @@ package com.medica.integration.controller.auth.domain;
 
 public class AuthResponseDto {
 
-	private AuthResponseStatus status;
+	private AuthenticationStatus status;
 	
 	private String token;
 	
-	public AuthResponseStatus getStatus() {
+	public AuthenticationStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(AuthResponseStatus status) {
+	public void setStatus(AuthenticationStatus status) {
 		this.status = status;
 	}
 
