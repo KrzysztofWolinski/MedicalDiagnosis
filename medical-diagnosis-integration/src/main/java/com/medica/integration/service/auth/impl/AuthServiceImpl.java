@@ -64,6 +64,17 @@ public class AuthServiceImpl implements AuthService {
 		}
 	}
 
+	@Override
+	public boolean isAuthorized(String username, String token) {
+		Credentials credentials = credentialsRepository.findByUsername(username);
+		
+		if ((credentials != null) && (credentials.getToken().equals(token))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	private void updateToken(Credentials credentials) {
 		credentials.setToken(tokenGeneratorService.generateToken());
 		credentials.setTokenExpirationTime(tokenGeneratorService.generateTokenExpirationTime());

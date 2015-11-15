@@ -1,8 +1,10 @@
 package com.medica.integration.domain.user;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+
 
 @Entity(name = "user")
 public class User {
@@ -17,7 +19,7 @@ public class User {
 	@OneToOne
 	private Credentials credentials;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 
 	public String getPesel() {

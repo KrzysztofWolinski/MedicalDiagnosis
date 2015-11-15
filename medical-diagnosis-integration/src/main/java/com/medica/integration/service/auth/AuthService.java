@@ -12,4 +12,6 @@ public interface AuthService {
 	
 	public AuthenticationCheckResult checkAuthentication(String username, String token);
 	
+	public boolean isAuthorized(String username, String token);
+	
 }

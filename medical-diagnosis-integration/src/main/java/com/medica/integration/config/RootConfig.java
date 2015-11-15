@@ -26,6 +26,8 @@ import com.medica.integration.service.auth.AuthService;
 import com.medica.integration.service.auth.TokenGeneratorService;
 import com.medica.integration.service.auth.impl.AuthServiceImpl;
 import com.medica.integration.service.auth.impl.TokenGeneratorServiceImpl;
+import com.medica.integration.service.user.UserService;
+import com.medica.integration.service.user.impl.UserServiceImpl;
 
 @Configuration
 @EnableWebMvc
@@ -42,6 +44,11 @@ class RootConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public TokenGeneratorService tokenGeneratorService() {
 		return new TokenGeneratorServiceImpl();
+	}
+	
+	@Bean
+	public UserService userService() {
+		return new UserServiceImpl();
 	}
 	
 	@Bean
