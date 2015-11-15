@@ -26,6 +26,8 @@ import com.medica.integration.service.auth.AuthService;
 import com.medica.integration.service.auth.TokenGeneratorService;
 import com.medica.integration.service.auth.impl.AuthServiceImpl;
 import com.medica.integration.service.auth.impl.TokenGeneratorServiceImpl;
+import com.medica.integration.service.diagnosis.DiagnosisService;
+import com.medica.integration.service.diagnosis.impl.DiagnosisServiceImpl;
 import com.medica.integration.service.user.UserService;
 import com.medica.integration.service.user.impl.UserServiceImpl;
 
@@ -49,6 +51,11 @@ class RootConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public UserService userService() {
 		return new UserServiceImpl();
+	}
+	
+	@Bean
+	public DiagnosisService diagnosisService() {
+		return new DiagnosisServiceImpl();
 	}
 	
 	@Bean
