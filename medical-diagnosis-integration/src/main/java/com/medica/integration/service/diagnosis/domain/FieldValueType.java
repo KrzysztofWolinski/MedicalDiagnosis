@@ -1,4 +1,4 @@
-package com.medica.integration.controller.diagnosis.domain.form;
+package com.medica.integration.service.diagnosis.domain;
 
 public enum FieldValueType {
 

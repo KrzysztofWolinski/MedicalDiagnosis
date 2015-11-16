@@ -1,0 +1,38 @@
+{
+    "formFields": [
+        {
+            "name": null,
+            "fieldList": [
+                {
+                    "@type": "SimpleFieldValue",
+                    "type": "STRING",
+                    "value": null
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "type": "DATE",
+                    "value": null
+                }
+            ]
+        },
+        {
+            "name": null,
+            "fieldList": [
+                {
+                    "@type": "SimpleFieldValue",
+                    "type": null,
+                    "value": null
+                },
+                {
+                    "@type": "ChoiceFieldValue",
+                    "type": "STRING",
+                    "possibleValues": [
+                        "possibleValue1",
+                        "possibleValue2"
+                    ],
+                    "value": "possibleValue1"
+                }
+            ]
+        }
+    ]
+}

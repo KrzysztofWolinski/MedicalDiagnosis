@@ -3,7 +3,7 @@ package com.medica.integration.controller.diagnosis.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.medica.integration.controller.diagnosis.domain.form.FieldGroup;
+import com.medica.integration.service.diagnosis.domain.FieldGroup;
 
 public class DiagnosisFormResponse {
 

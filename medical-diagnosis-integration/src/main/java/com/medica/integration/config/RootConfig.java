@@ -22,11 +22,14 @@ import com.fasterxml.jackson.core.JsonGenerator.Feature;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.medica.integration.service.auth.AuthService;
 import com.medica.integration.service.auth.TokenGeneratorService;
 import com.medica.integration.service.auth.impl.AuthServiceImpl;
 import com.medica.integration.service.auth.impl.TokenGeneratorServiceImpl;
 import com.medica.integration.service.diagnosis.DiagnosisService;
+import com.medica.integration.service.diagnosis.domain.ChoiceFieldValue;
+import com.medica.integration.service.diagnosis.domain.SimpleFieldValue;
 import com.medica.integration.service.diagnosis.impl.DiagnosisServiceImpl;
 import com.medica.integration.service.user.UserService;
 import com.medica.integration.service.user.impl.UserServiceImpl;
@@ -90,6 +93,10 @@ class RootConfig extends WebMvcConfigurerAdapter {
 		mapper.configure(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT, true);
 		mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
+		mapper.registerSubtypes(
+				new NamedType(SimpleFieldValue.class, "SimpleFieldValue"),
+				new NamedType(ChoiceFieldValue.class, "ChoiceFieldValue"));
+		
 		return mapper;
 	}
 	

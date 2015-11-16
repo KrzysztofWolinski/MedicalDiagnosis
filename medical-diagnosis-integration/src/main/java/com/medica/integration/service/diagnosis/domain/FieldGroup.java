@@ -1,12 +1,13 @@
-package com.medica.integration.controller.diagnosis.domain.form;
+package com.medica.integration.service.diagnosis.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FieldGroup {
 
 	private String name;
 	
-	private List<FieldValue> fieldList;
+	private List<FieldValue> fieldList = new ArrayList<FieldValue>();
 
 	public String getName() {
 		return name;
@@ -22,6 +23,10 @@ public class FieldGroup {
 
 	public void setFieldList(List<FieldValue> fieldList) {
 		this.fieldList = fieldList;
+	}
+	
+	public void addField(FieldValue field) {
+		this.fieldList.add(field);
 	}
 	
 }
