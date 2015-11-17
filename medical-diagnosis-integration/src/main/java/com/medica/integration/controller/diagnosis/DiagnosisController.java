@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.medica.integration.controller.diagnosis.domain.DiagnosisFormRequestDto;
+import com.medica.integration.controller.diagnosis.domain.DiagnosisSubmitFormRequest;
+import com.medica.integration.controller.diagnosis.domain.DiagnosisSubmitFormResponse;
 import com.medica.integration.service.auth.AuthService;
 import com.medica.integration.service.diagnosis.DiagnosisService;
 import com.medica.integration.service.diagnosis.domain.DiagnosisForm;
@@ -35,9 +37,15 @@ public class DiagnosisController {
 	}
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public String submitData() {
-		// TODO mock
-		return "diagnosis:submitData";
+	@ResponseBody
+	public DiagnosisSubmitFormResponse submitData(@RequestBody DiagnosisSubmitFormRequest request) {
+		if (authService.isAuthorized(request.getUsername(), request.getToken())) {
+			DiagnosisSubmitFormResponse response = new DiagnosisSubmitFormResponse();
+			return response;
+		} else {
+			// TODO
+			return null;
+		}
 	}
 	
 	@RequestMapping(value = "/perform", method = RequestMethod.GET)

@@ -1,14 +1,16 @@
 {
     "formFields": [
         {
-            "name": null,
+            "name": "First group",
             "fieldList": [
                 {
+                	"name": "simple string value",
                     "@type": "SimpleFieldValue",
                     "type": "STRING",
                     "value": null
                 },
                 {
+                	"name": "simple date value",
                     "@type": "SimpleFieldValue",
                     "type": "DATE",
                     "value": null
@@ -16,14 +18,16 @@
             ]
         },
         {
-            "name": null,
+            "name": "Second group",
             "fieldList": [
                 {
+                	"name": "simple integer value",
                     "@type": "SimpleFieldValue",
-                    "type": null,
+                    "type": "INTEGER",
                     "value": null
                 },
                 {
+                	"name": "Choice string value",
                     "@type": "ChoiceFieldValue",
                     "type": "STRING",
                     "possibleValues": [

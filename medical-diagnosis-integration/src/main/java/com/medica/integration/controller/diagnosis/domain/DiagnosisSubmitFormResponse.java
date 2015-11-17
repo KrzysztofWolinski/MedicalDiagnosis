@@ -1,5 +1,6 @@
 package com.medica.integration.controller.diagnosis.domain;
 
-public class DiagnosisSubmitDataRequest {
+
+public class DiagnosisSubmitFormResponse {
 
 }
