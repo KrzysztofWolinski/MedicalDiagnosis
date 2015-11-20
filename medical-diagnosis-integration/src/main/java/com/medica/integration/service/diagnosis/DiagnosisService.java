@@ -6,7 +6,7 @@ public interface DiagnosisService {
 
 	public DiagnosisForm getForm(); 
 	
-	public void acceptSubmittedForm(DiagnosisForm form);
+	public void acceptSubmittedForm(DiagnosisForm form, String username);
 	
 	// TODO perform diagnosis
 	

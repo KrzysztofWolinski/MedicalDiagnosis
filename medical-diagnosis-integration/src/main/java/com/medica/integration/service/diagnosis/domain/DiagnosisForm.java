@@ -5,17 +5,17 @@ import java.util.List;
 
 public class DiagnosisForm {
 
-	private List<FieldGroup> formFields = new ArrayList<FieldGroup>();
+	private List<FieldGroup> formFieldGroups = new ArrayList<FieldGroup>();
 
-	public List<FieldGroup> getFormFields() {
-		return formFields;
+	public List<FieldGroup> getFormFieldGroups() {
+		return formFieldGroups;
 	}
 
-	public void setFormFields(List<FieldGroup> formFields) {
-		this.formFields = formFields;
+	public void setFormFieldGroups(List<FieldGroup> formFieldGroups) {
+		this.formFieldGroups = formFieldGroups;
 	}
 	
-	public void addFormField(FieldGroup group) {
-		this.formFields.add(group);
+	public void addFormFieldGroup(FieldGroup group) {
+		this.formFieldGroups.add(group);
 	}
 }

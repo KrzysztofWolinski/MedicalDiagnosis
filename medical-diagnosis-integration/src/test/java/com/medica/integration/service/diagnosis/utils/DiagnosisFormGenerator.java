@@ -60,8 +60,8 @@ public class DiagnosisFormGenerator {
 		fieldGroup2.addField(simpleFieldValue3);
 		fieldGroup2.addField(choiceFieldValue1);
 		
-		form.addFormField(fieldGroup1);
-		form.addFormField(fieldGroup2);
+		form.addFormFieldGroup(fieldGroup1);
+		form.addFormFieldGroup(fieldGroup2);
 		
 		mapper.writeValue(file, form);
 		

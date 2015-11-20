@@ -12,6 +12,7 @@ import com.medica.integration.controller.diagnosis.domain.DiagnosisFormRequestDt
 import com.medica.integration.controller.diagnosis.domain.DiagnosisSubmitFormRequest;
 import com.medica.integration.controller.diagnosis.domain.DiagnosisSubmitFormResponse;
 import com.medica.integration.service.auth.AuthService;
+import com.medica.integration.service.auth.exceptions.InvalidCredentialsException;
 import com.medica.integration.service.diagnosis.DiagnosisService;
 import com.medica.integration.service.diagnosis.domain.DiagnosisForm;
 
@@ -27,24 +28,25 @@ public class DiagnosisController {
 	
 	@RequestMapping(value = "/form", method = RequestMethod.POST)
 	@ResponseBody
-    public DiagnosisForm getForm(@RequestBody DiagnosisFormRequestDto request) {  	
+    public DiagnosisForm getForm(@RequestBody DiagnosisFormRequestDto request) throws InvalidCredentialsException {  	
 		if (authService.isAuthorized(request.getUsername(), request.getToken())) {
 			return this.diagnosisService.getForm();
 		} else {
-			// TODO
-			return null;
+			throw new InvalidCredentialsException();
 		}
 	}
 	
 	@RequestMapping(value = "/submit", method = RequestMethod.POST)
 	@ResponseBody
-	public DiagnosisSubmitFormResponse submitData(@RequestBody DiagnosisSubmitFormRequest request) {
+	public DiagnosisSubmitFormResponse submitData(@RequestBody DiagnosisSubmitFormRequest request) throws InvalidCredentialsException {
 		if (authService.isAuthorized(request.getUsername(), request.getToken())) {
 			DiagnosisSubmitFormResponse response = new DiagnosisSubmitFormResponse();
+			
+			this.diagnosisService.acceptSubmittedForm(request.getData(), request.getUsername());
+			
 			return response;
 		} else {
-			// TODO
-			return null;
+			throw new InvalidCredentialsException();
 		}
 	}
 	

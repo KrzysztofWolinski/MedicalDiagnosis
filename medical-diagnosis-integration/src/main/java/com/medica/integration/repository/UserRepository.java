@@ -8,7 +8,7 @@ import com.medica.integration.domain.user.User;
 
 public interface UserRepository extends JpaRepository<User, String> {
 
-	@Query(value = "SELECT * FROM user u WHERE u.credentials_username = :username", nativeQuery = true)
+	@Query(value = "SELECT * FROM users u WHERE u.credentials_username = :username", nativeQuery = true)
 	public User findByUsername(@Param("username") String username);
 	
 }

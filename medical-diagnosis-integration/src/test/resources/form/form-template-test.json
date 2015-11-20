@@ -1,15 +1,17 @@
 {
-    "formFields": [
+    "formFieldGroups": [
         {
             "name": null,
             "fieldList": [
                 {
                     "@type": "SimpleFieldValue",
+                    "name": null,
                     "type": "STRING",
                     "value": null
                 },
                 {
                     "@type": "SimpleFieldValue",
+                    "name": null,
                     "type": "DATE",
                     "value": null
                 }
@@ -20,11 +22,13 @@
             "fieldList": [
                 {
                     "@type": "SimpleFieldValue",
+                    "name": null,
                     "type": null,
                     "value": null
                 },
                 {
                     "@type": "ChoiceFieldValue",
+                    "name": null,
                     "type": "STRING",
                     "possibleValues": [
                         "possibleValue1",

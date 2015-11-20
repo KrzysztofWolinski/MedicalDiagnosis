@@ -1,34 +1,34 @@
 {
-    "formFields": [
+    "formFieldGroups": [
         {
-            "name": "First group",
+            "name": "Group1",
             "fieldList": [
                 {
-                	"name": "simple string value",
                     "@type": "SimpleFieldValue",
+                    "name": "simple1",
                     "type": "STRING",
                     "value": null
                 },
                 {
-                	"name": "simple date value",
                     "@type": "SimpleFieldValue",
+                    "name": "simple2",
                     "type": "DATE",
                     "value": null
                 }
             ]
         },
         {
-            "name": "Second group",
+            "name": "Group2",
             "fieldList": [
                 {
-                	"name": "simple integer value",
                     "@type": "SimpleFieldValue",
+                    "name": "Simple3",
                     "type": "INTEGER",
                     "value": null
                 },
                 {
-                	"name": "Choice string value",
                     "@type": "ChoiceFieldValue",
+                    "name": "choice1",
                     "type": "STRING",
                     "possibleValues": [
                         "possibleValue1",

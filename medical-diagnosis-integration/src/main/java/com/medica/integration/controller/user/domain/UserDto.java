@@ -47,10 +47,12 @@ public class UserDto {
 	public static UserDto fromUser(User user) {
 		UserDto userDto = new UserDto();
 		
-		userDto.setPesel(user.getPesel());
-		userDto.setName(user.getName());
-		userDto.setSurname(user.getSurname());
-		userDto.setAddress(AddressDto.fromAddress(user.getAddress()));
+		if (user != null) {
+			userDto.setPesel(user.getPesel());
+			userDto.setName(user.getName());
+			userDto.setSurname(user.getSurname());
+			userDto.setAddress(AddressDto.fromAddress(user.getAddress()));
+		}
 		
 		return userDto;
 	}
