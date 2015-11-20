@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService {
 		
 		updatedUser.setName(user.getName());
 		updatedUser.setSurname(user.getSurname());
-		updatedUser.setPesel(user.getPesel());
 		
 		Address updatedAddress = updatedUser.getAddress();
 		updatedAddress.setStreet(user.getAddress().getStreet());
