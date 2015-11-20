@@ -24,7 +24,10 @@ public class AuthServiceImpl implements AuthService {
 		Credentials credentials = credentialsRepository.findByUsername(username);
 		
 		if ((credentials != null) && (credentials.getPassword().equals(password))) {
-			updateToken(credentials);
+			credentials.setToken(tokenGeneratorService.generateToken());
+			credentials.setTokenExpirationTime(tokenGeneratorService.generateTokenExpirationTime());
+			
+			credentialsRepository.saveAndFlush(credentials);
 			
 			return credentials.getToken();
 		} else {
@@ -53,11 +56,13 @@ public class AuthServiceImpl implements AuthService {
 		
 		if ((credentials != null) && (credentials.getToken().equals(token))) {
 			if ((credentials.getTokenExpirationTime() != null) && (credentials.getTokenExpirationTime().after(new Date()))) {
+				updateTokenExpirationTime(credentials);
+				
 				return result.withStatusOk();
 			} else {
-				updateToken(credentials);
+				resetCredentials(credentials);
 				
-				return result.withStatusExpired(credentials.getToken());
+				return result.withStatusExpired();
 			}
 		} else {
 			return result.withStatusInvalid();
@@ -75,11 +80,16 @@ public class AuthServiceImpl implements AuthService {
 		}
 	}
 	
-	private void updateToken(Credentials credentials) {
-		credentials.setToken(tokenGeneratorService.generateToken());
+	private void updateTokenExpirationTime(Credentials credentials) {
 		credentials.setTokenExpirationTime(tokenGeneratorService.generateTokenExpirationTime());
 		
-		credentialsRepository.saveAndFlush(credentials);
+		this.credentialsRepository.saveAndFlush(credentials);
 	}
 	
+	private void resetCredentials(Credentials credentials) {
+		credentials.setToken("");
+		credentials.setTokenExpirationTime(null);
+		
+		this.credentialsRepository.saveAndFlush(credentials);
+	}
 }

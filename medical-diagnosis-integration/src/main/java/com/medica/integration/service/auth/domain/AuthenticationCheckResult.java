@@ -34,8 +34,8 @@ public class AuthenticationCheckResult {
 		return this;
 	}
 	
-	public AuthenticationCheckResult withStatusExpired(String newToken) {
-		this.newToken = newToken;
+	public AuthenticationCheckResult withStatusExpired() {
+		this.newToken = "";
 		this.status = AuthenticationStatus.EXPIRED; 
 		return this;
 	}

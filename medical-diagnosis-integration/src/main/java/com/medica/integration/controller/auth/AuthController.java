@@ -65,8 +65,7 @@ public class AuthController {
 			// User authenticated
 			response.setStatus(AuthenticationStatus.OK);
 		} else if (result.isStatus(AuthenticationStatus.EXPIRED)) {
-			// Session expired, update token
-			response.setToken(result.getNewToken());
+			// Session expired, reset credentials
 			response.setStatus(AuthenticationStatus.OK);
 		} else if (result.isStatus(AuthenticationStatus.INVALID)) {
 			// Invalid token/username
