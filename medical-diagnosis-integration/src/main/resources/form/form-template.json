@@ -1,40 +1,61 @@
 {
     "formFieldGroups": [
         {
-            "name": "Group1",
+            "name": "Blood test results",
             "fieldList": [
                 {
                     "@type": "SimpleFieldValue",
-                    "name": "simple1",
-                    "type": "STRING",
+                    "name": "WBC",
+                    "type": "FLOAT",
                     "value": null
                 },
                 {
                     "@type": "SimpleFieldValue",
-                    "name": "simple2",
-                    "type": "DATE",
+                    "name": "RBC",
+                    "type": "FLOAT",
+                    "value": null
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "HGB",
+                    "type": "FLOAT",
+                    "value": null
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "HCT",
+                    "type": "FLOAT",
+                    "value": null
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "MCV",
+                    "type": "FLOAT",
                     "value": null
                 }
             ]
         },
         {
-            "name": "Group2",
+            "name": "Other",
             "fieldList": [
                 {
                     "@type": "SimpleFieldValue",
-                    "name": "Simple3",
-                    "type": "INTEGER",
-                    "value": null
+                    "name": "Fever",
+                    "type": "FLOAT",
+                    "value": "36.6"
                 },
                 {
                     "@type": "ChoiceFieldValue",
-                    "name": "choice1",
+                    "name": "Mood",
                     "type": "STRING",
                     "possibleValues": [
-                        "possibleValue1",
-                        "possibleValue2"
+                        "Great",
+                        "Good",
+                        "Ok",
+                        "Not good",
+                        "Bad"
                     ],
-                    "value": "possibleValue1"
+                    "value": "Ok"
                 }
             ]
         }

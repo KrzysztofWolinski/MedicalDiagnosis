@@ -4,6 +4,7 @@ public enum FieldValueType {
 
 	STRING("String"),
 	INTEGER("Integer"),
+	FLOAT("Float"),
 	DATE("Date");
 	
 	private final String type;

@@ -50,10 +50,10 @@ public class DiagnosisController {
 		}
 	}
 	
-	@RequestMapping(value = "/perform", method = RequestMethod.GET)
-	public String performDiagnosis() {
+	@RequestMapping(value = "/perform", method = RequestMethod.POST)
+	public DiagnosisSubmitFormResponse performDiagnosis() {
 		// TODO mock
-		return "diagnosis:performDiagnosis";
+		return new DiagnosisSubmitFormResponse();
 	}
 	
 	@RequestMapping(value = "/rate", method = RequestMethod.POST)
