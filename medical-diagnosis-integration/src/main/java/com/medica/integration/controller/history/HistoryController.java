@@ -5,17 +5,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.medica.integration.controller.history.domain.HistoryGetDataResponse;
+
 @RestController
 @RequestMapping("/history")
 public class HistoryController {
 
-	@RequestMapping(value = "/data", method = RequestMethod.GET)
-    public String getUserDataHistoryList() {  	
+	@RequestMapping(value = "/data", method = RequestMethod.POST)
+    public HistoryGetDataResponse getUserDataHistoryList() {  	
 		// TODO mock		
-        return "user:getUserDataHistoryList";
+        return new HistoryGetDataResponse();
     }
 	
-	@RequestMapping(value = "/diagnosis", method = RequestMethod.GET)
+	@RequestMapping(value = "/diagnosis", method = RequestMethod.POST)
     public String getUserDiagnosisHistoryList() {  	
 		// TODO mock		
         return "user:getUserDiagnosisHistoryList";
