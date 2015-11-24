@@ -2,15 +2,15 @@ package com.medica.integration.service.history;
 
 import java.util.List;
 
-import com.medica.integration.service.history.domain.HistoryByDateDataPiece;
-import com.medica.integration.service.history.domain.HistoryByNameDataPiece;
-import com.medica.integration.service.history.domain.HistoryDiagnosesDataPiece;
+import com.medica.integration.service.history.domain.HistoryByDateDataBlock;
+import com.medica.integration.service.history.domain.HistoryByNameDataBlock;
+import com.medica.integration.service.history.domain.HistoryDiagnosesDataBlock;
 
 public interface HistoryService {
 	
-	public List<HistoryByDateDataPiece> getDataByDate(String username);
+	public List<HistoryByDateDataBlock> getDataByDate(String username);
 	
-	public List<HistoryByNameDataPiece> getDataByName(String username);
+	public List<HistoryByNameDataBlock> getDataByName(String username);
 	
-	public List<HistoryDiagnosesDataPiece> getDiagnosesData(String username);
+	public List<HistoryDiagnosesDataBlock> getDiagnosesData(String username);
 }

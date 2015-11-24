@@ -2,24 +2,24 @@ package com.medica.integration.controller.history.domain;
 
 import java.util.List;
 
-import com.medica.integration.service.history.domain.HistoryDiagnosesDataPiece;
+import com.medica.integration.service.history.domain.HistoryDiagnosesDataBlock;
 
 public class HistoryGetDiagnosesHistoryResponse {
 
-	private List<HistoryDiagnosesDataPiece> data;
+	private List<HistoryDiagnosesDataBlock> data;
 
 	public HistoryGetDiagnosesHistoryResponse() {
 	}
 	
-	public HistoryGetDiagnosesHistoryResponse(List<HistoryDiagnosesDataPiece> data) {
+	public HistoryGetDiagnosesHistoryResponse(List<HistoryDiagnosesDataBlock> data) {
 		this.data = data;
 	}
 	
-	public List<HistoryDiagnosesDataPiece> getData() {
+	public List<HistoryDiagnosesDataBlock> getData() {
 		return data;
 	}
 
-	public void setData(List<HistoryDiagnosesDataPiece> data) {
+	public void setData(List<HistoryDiagnosesDataBlock> data) {
 		this.data = data;
 	}
 }

@@ -1,5 +1,5 @@
 package com.medica.integration.service.history.domain;
 
-public class HistoryByDateDataPiece {
+public class HistoryDiagnosesDataBlock {
 
 }
