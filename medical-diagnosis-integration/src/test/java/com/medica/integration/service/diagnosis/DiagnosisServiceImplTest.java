@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -20,6 +21,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
+import com.medica.integration.repository.DiagnosisDataRepository;
+import com.medica.integration.repository.UserRepository;
 import com.medica.integration.service.diagnosis.domain.ChoiceFieldValue;
 import com.medica.integration.service.diagnosis.domain.DiagnosisForm;
 import com.medica.integration.service.diagnosis.domain.SimpleFieldValue;
@@ -46,6 +49,16 @@ public class DiagnosisServiceImplTest {
 		@Bean
 		public DiagnosisService diagnosisService() {
 			return new DiagnosisServiceImpl();
+		}
+		
+		@Bean
+		public DiagnosisDataRepository diagnosisRepository() {
+			return Mockito.mock(DiagnosisDataRepository.class);
+		}
+		
+		@Bean
+		public UserRepository userRepository() {
+			return Mockito.mock(UserRepository.class);
 		}
 		
 		@Bean

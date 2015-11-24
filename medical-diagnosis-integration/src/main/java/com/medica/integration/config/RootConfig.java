@@ -31,6 +31,8 @@ import com.medica.integration.service.diagnosis.DiagnosisService;
 import com.medica.integration.service.diagnosis.domain.ChoiceFieldValue;
 import com.medica.integration.service.diagnosis.domain.SimpleFieldValue;
 import com.medica.integration.service.diagnosis.impl.DiagnosisServiceImpl;
+import com.medica.integration.service.history.HistoryService;
+import com.medica.integration.service.history.impl.HistoryServiceImpl;
 import com.medica.integration.service.user.UserService;
 import com.medica.integration.service.user.impl.UserServiceImpl;
 
@@ -59,6 +61,11 @@ class RootConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public DiagnosisService diagnosisService() {
 		return new DiagnosisServiceImpl();
+	}
+	
+	@Bean
+	public HistoryService historyService() {
+		return new HistoryServiceImpl();
 	}
 	
 	@Bean
