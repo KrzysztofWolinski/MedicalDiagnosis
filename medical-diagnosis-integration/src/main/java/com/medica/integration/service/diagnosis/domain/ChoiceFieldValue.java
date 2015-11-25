@@ -15,11 +15,15 @@ public class ChoiceFieldValue extends FieldValue {
 	
 	@Override
 	public Object getValue() {
-		if ((possibleValues != null) && (selectedValueIndex < possibleValues.size())) {
+		if ((possibleValues != null) && (selectedValueIndex < possibleValues.size()) && (selectedValueIndex > -1)) {
 			return possibleValues.get(selectedValueIndex);
 		} else {
 			return null;
 		}
+	}
+	
+	public void setValue(Object value) {
+		selectedValueIndex = possibleValues.indexOf(value);
 	}
 
 	public List<Object> getPossibleValues() {

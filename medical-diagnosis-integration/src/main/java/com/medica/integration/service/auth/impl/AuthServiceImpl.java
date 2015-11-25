@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+import com.medica.integration.controller.auth.domain.AuthenticationStatus;
 import com.medica.integration.domain.user.Credentials;
 import com.medica.integration.repository.CredentialsRepository;
 import com.medica.integration.service.auth.AuthService;
@@ -71,13 +72,9 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public boolean isAuthorized(String username, String token) {
-		Credentials credentials = credentialsRepository.findByUsername(username);
+		AuthenticationCheckResult result = this.checkAuthentication(username, token);
 		
-		if ((credentials != null) && (credentials.getToken().equals(token))) {
-			return true;
-		} else {
-			return false;
-		}
+		return (result.getStatus().equals(AuthenticationStatus.OK)) ? true : false;
 	}
 	
 	private void updateTokenExpirationTime(Credentials credentials) {

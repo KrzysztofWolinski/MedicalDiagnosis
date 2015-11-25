@@ -5,7 +5,7 @@
 	<name>medical-diagnosis</name>
 	<groupId>com.bodziowagh</groupId>
 	<artifactId>medical-diagnosis</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.9-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<properties>
