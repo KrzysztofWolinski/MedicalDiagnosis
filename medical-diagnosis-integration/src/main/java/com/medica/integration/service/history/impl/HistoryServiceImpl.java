@@ -14,6 +14,7 @@ import com.medica.integration.repository.DiagnosisDataRepository;
 import com.medica.integration.repository.UserRepository;
 import com.medica.integration.service.history.HistoryService;
 import com.medica.integration.service.history.domain.HistoryByDateDataBlock;
+import com.medica.integration.service.history.domain.HistoryByDateDataPiece;
 import com.medica.integration.service.history.domain.HistoryByNameDataBlock;
 import com.medica.integration.service.history.domain.HistoryByNameDataPiece;
 import com.medica.integration.service.history.domain.HistoryDiagnosesDataBlock;
@@ -82,11 +83,22 @@ public class HistoryServiceImpl implements HistoryService {
 	}
 	
 	private List<HistoryByDateDataBlock> convertDataToDataByDate(List<DiagnosisData> rawData) {
-		List<HistoryByDateDataBlock> data = new ArrayList<HistoryByDateDataBlock>();
+		List<HistoryByDateDataBlock> convertedData = new ArrayList<HistoryByDateDataBlock>();
 		
-		// TODO
+		for (DiagnosisData data : rawData) {
+			HistoryByDateDataBlock dataBlock = new HistoryByDateDataBlock();
+			
+			List<HistoryByDateDataPiece> dataPieces = data.getData().stream().map(d -> {
+				return new HistoryByDateDataPiece(d.getName(),d.getValue(), d.getType());
+			}).collect(Collectors.toList());
+
+			dataBlock.setDate(data.getDateSubtmitted());
+			dataBlock.setData(dataPieces);
+			
+			convertedData.add(dataBlock);
+		}
 		
-		return data;
+		return convertedData;
 	}
 
 }
