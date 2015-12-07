@@ -3,35 +3,35 @@ package com.medica.core.domain.communication.perform;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.medica.core.domain.DiagnosisData;
-import com.medica.core.domain.DiagnosisRule;
+import com.medica.core.domain.DiagnosisCoreData;
+import com.medica.core.domain.DiagnosisCoreRule;
 
 public class PerformRequest {
 
-	private List<DiagnosisRule> rules;
+	private List<DiagnosisCoreRule> rules;
 	
-	private DiagnosisData lastData;
+	private DiagnosisCoreData lastData;
 
-	public List<DiagnosisRule> getRules() {
+	public List<DiagnosisCoreRule> getRules() {
 		return rules;
 	}
 
-	public void setRules(List<DiagnosisRule> rules) {
+	public void setRules(List<DiagnosisCoreRule> rules) {
 		this.rules = rules;
 	}
 	
-	public void addRule(DiagnosisRule rule) {
+	public void addRule(DiagnosisCoreRule rule) {
 		if (this.rules == null) {
-			this.rules = new ArrayList<DiagnosisRule>();
+			this.rules = new ArrayList<DiagnosisCoreRule>();
 		}
 		this.rules.add(rule);
 	}
 
-	public DiagnosisData getLastData() {
+	public DiagnosisCoreData getLastData() {
 		return lastData;
 	}
 
-	public void setLastData(DiagnosisData lastData) {
+	public void setLastData(DiagnosisCoreData lastData) {
 		this.lastData = lastData;
 	}
 	

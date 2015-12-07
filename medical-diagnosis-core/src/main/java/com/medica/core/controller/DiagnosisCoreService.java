@@ -7,7 +7,7 @@ import com.medica.core.domain.communication.learn.LearnResponse;
 import com.medica.core.domain.communication.perform.PerformRequest;
 import com.medica.core.domain.communication.perform.PerformResponse;
 
-public interface DiagnosisService {
+public interface DiagnosisCoreService {
 
 	public AnalyseResponse analyse(AnalyseRequest request);
 	

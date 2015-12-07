@@ -15,6 +15,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.ResourceHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -27,10 +28,8 @@ import com.medica.integration.service.auth.AuthService;
 import com.medica.integration.service.auth.TokenGeneratorService;
 import com.medica.integration.service.auth.impl.AuthServiceImpl;
 import com.medica.integration.service.auth.impl.TokenGeneratorServiceImpl;
-import com.medica.integration.service.diagnosis.DiagnosisService;
 import com.medica.integration.service.diagnosis.domain.ChoiceFieldValue;
 import com.medica.integration.service.diagnosis.domain.SimpleFieldValue;
-import com.medica.integration.service.diagnosis.impl.DiagnosisServiceImpl;
 import com.medica.integration.service.history.HistoryService;
 import com.medica.integration.service.history.impl.HistoryServiceImpl;
 import com.medica.integration.service.user.UserService;
@@ -38,8 +37,9 @@ import com.medica.integration.service.user.impl.UserServiceImpl;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.medica.integration.controller")
-@Import({JpaConfig.class})
+@EnableScheduling
+@ComponentScan(basePackages = {"com.medica.integration.controller", "com.medica.integration.service"})
+@Import({JpaConfig.class, DiagnosisCoreConfig.class})
 @PropertySources({@PropertySource("classpath:properties/medical-diagnosis.properties")})
 class RootConfig extends WebMvcConfigurerAdapter {
 
@@ -56,11 +56,6 @@ class RootConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public UserService userService() {
 		return new UserServiceImpl();
-	}
-	
-	@Bean
-	public DiagnosisService diagnosisService() {
-		return new DiagnosisServiceImpl();
 	}
 	
 	@Bean

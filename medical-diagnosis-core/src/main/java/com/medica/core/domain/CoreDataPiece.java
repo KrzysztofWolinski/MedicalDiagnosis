@@ -1,5 +1,5 @@
 package com.medica.core.domain;
 
-public class DiagnosisData {
+public class CoreDataPiece {
 
 }

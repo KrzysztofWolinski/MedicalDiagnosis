@@ -2,11 +2,11 @@ package com.medica.core.service.learn;
 
 import java.util.List;
 
-import com.medica.core.domain.DiagnosisData;
-import com.medica.core.domain.DiagnosisRule;
+import com.medica.core.domain.DiagnosisCoreResult;
+import com.medica.core.domain.DiagnosisCoreRule;
 
 public interface LearnService {
 
-	public List<DiagnosisRule> generateRules(List<DiagnosisData> allDataList);
+	public List<DiagnosisCoreRule> generateRules(List<DiagnosisCoreResult> allDataList);
 	
 }

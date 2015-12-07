@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import com.medica.core.controller.DiagnosisService;
-import com.medica.core.domain.DiagnosisData;
-import com.medica.core.domain.DiagnosisResult;
-import com.medica.core.domain.DiagnosisRule;
+import com.medica.core.controller.DiagnosisCoreService;
+import com.medica.core.domain.DiagnosisCoreData;
+import com.medica.core.domain.DiagnosisCoreResult;
+import com.medica.core.domain.DiagnosisCoreRule;
 import com.medica.core.domain.communication.analyse.AnalyseRequest;
 import com.medica.core.domain.communication.analyse.AnalyseResponse;
 import com.medica.core.domain.communication.analyse.AnalyseResponseStatus;
@@ -19,7 +19,7 @@ import com.medica.core.service.analyse.AnalyseService;
 import com.medica.core.service.learn.LearnService;
 import com.medica.core.service.perform.PerformService;
 
-public class DiagnosisServiceImpl implements DiagnosisService {
+public class DefaultDiagnosisCoreService implements DiagnosisCoreService {
 
 	@Inject
 	private LearnService learnService;
@@ -32,7 +32,7 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 	
 	public AnalyseResponse analyse(AnalyseRequest request) {
 		AnalyseResponse response = new AnalyseResponse();
-		List<DiagnosisData> data = request.getData();
+		List<DiagnosisCoreData> data = request.getData();
 		
 		AnalyseResponseStatus responseStatus = analyseService.analyseData(data);
 		
@@ -43,9 +43,9 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 
 	public LearnResponse learn(LearnRequest request) {
 		LearnResponse response = new LearnResponse();
-		List<DiagnosisData> data = request.getData();
+		List<DiagnosisCoreResult> inputData = request.getResults();
 		
-		List<DiagnosisRule> generatedRules = learnService.generateRules(data);
+		List<DiagnosisCoreRule> generatedRules = learnService.generateRules(inputData);
 		
 		response.setRules(generatedRules);
 		
@@ -55,10 +55,12 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 	public PerformResponse perform(PerformRequest request) {
 		PerformResponse response = new PerformResponse();
 		
-		DiagnosisData currentData = request.getLastData();
-		List<DiagnosisRule> rules = request.getRules();
+		DiagnosisCoreData currentData = request.getLastData();
+		List<DiagnosisCoreRule> rules = request.getRules();
 		
-		List<DiagnosisResult> diagnosisResults = performService.performDiagnosis(currentData, rules);
+		List<DiagnosisCoreResult> diagnosisResults = performService.performDiagnosis(currentData, rules);
+		
+		response.setResultList(diagnosisResults);
 		
 		return response;
 	}

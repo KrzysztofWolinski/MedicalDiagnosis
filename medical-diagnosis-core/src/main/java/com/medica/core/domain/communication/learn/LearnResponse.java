@@ -2,18 +2,18 @@ package com.medica.core.domain.communication.learn;
 
 import java.util.List;
 
-import com.medica.core.domain.DiagnosisRule;
+import com.medica.core.domain.DiagnosisCoreRule;
 
 public class LearnResponse {
 
-	private List<DiagnosisRule> ruleList;
+	private List<DiagnosisCoreRule> rules;
 
-	public List<DiagnosisRule> getData() {
-		return ruleList;
+	public List<DiagnosisCoreRule> getRules() {
+		return rules;
 	}
 
-	public void setRules(List<DiagnosisRule> ruleList) {
-		this.ruleList = ruleList;
+	public void setRules(List<DiagnosisCoreRule> rules) {
+		this.rules = rules;
 	}
 	
 }

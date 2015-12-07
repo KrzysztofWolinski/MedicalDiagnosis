@@ -1,5 +1,5 @@
 package com.medica.core.domain;
 
-public class DiagnosisRule {
+public class DiagnosisCoreData {
 
 }

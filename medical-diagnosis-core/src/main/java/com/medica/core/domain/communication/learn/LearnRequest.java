@@ -3,24 +3,24 @@ package com.medica.core.domain.communication.learn;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.medica.core.domain.DiagnosisData;
+import com.medica.core.domain.DiagnosisCoreResult;
 
 public class LearnRequest {
 	
-	private List<DiagnosisData> dataList;
+	private List<DiagnosisCoreResult> results;
 
-	public List<DiagnosisData> getData() {
-		return dataList;
+	public List<DiagnosisCoreResult> getResults() {
+		return results;
 	}
 
-	public void setData(List<DiagnosisData> data) {
-		this.dataList = data;
+	public void setResults(List<DiagnosisCoreResult> results) {
+		this.results = results;
 	}
 	
-	public void addData(DiagnosisData data) {
-		if (this.dataList == null) {
-			this.dataList = new ArrayList<DiagnosisData>();
+	public void addResult(DiagnosisCoreResult result) {
+		if (this.results == null) {
+			this.results = new ArrayList<DiagnosisCoreResult>();
 		}
-		this.dataList.add(data);
+		this.results.add(result);
 	}
 }

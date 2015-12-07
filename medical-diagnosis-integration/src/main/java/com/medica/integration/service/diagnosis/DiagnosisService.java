@@ -11,4 +11,6 @@ public interface DiagnosisService {
 	// TODO perform diagnosis
 	
 	// TODO rate diagnosis
+	
+	
 }
