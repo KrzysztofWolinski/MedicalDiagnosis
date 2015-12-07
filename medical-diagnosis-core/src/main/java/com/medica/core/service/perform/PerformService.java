@@ -8,6 +8,6 @@ import com.medica.core.domain.DiagnosisCoreRule;
 
 public interface PerformService {
 
-	public List<DiagnosisCoreResult> performDiagnosis(DiagnosisCoreData currentData, List<DiagnosisCoreRule> rules);
+	public DiagnosisCoreResult performDiagnosis(DiagnosisCoreData currentData, List<DiagnosisCoreRule> rules);
 	
 }

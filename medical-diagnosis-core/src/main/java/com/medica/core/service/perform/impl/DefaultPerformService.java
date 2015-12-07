@@ -10,7 +10,7 @@ import com.medica.core.service.perform.PerformService;
 public class DefaultPerformService implements PerformService {
 
 	@Override
-	public List<DiagnosisCoreResult> performDiagnosis(DiagnosisCoreData currentData, List<DiagnosisCoreRule> rules) {
+	public DiagnosisCoreResult performDiagnosis(DiagnosisCoreData currentData, List<DiagnosisCoreRule> rules) {
 		// TODO Auto-generated method stub
 		return null;
 	}

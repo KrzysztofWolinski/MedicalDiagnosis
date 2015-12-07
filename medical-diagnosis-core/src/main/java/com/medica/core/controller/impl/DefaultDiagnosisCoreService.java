@@ -58,9 +58,9 @@ public class DefaultDiagnosisCoreService implements DiagnosisCoreService {
 		DiagnosisCoreData currentData = request.getLastData();
 		List<DiagnosisCoreRule> rules = request.getRules();
 		
-		List<DiagnosisCoreResult> diagnosisResults = performService.performDiagnosis(currentData, rules);
+		DiagnosisCoreResult diagnosisResult = performService.performDiagnosis(currentData, rules);
 		
-		response.setResultList(diagnosisResults);
+		response.setResult(diagnosisResult);
 		
 		return response;
 	}

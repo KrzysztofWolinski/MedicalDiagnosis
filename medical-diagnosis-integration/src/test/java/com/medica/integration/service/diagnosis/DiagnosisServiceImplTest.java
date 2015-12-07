@@ -21,7 +21,10 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
+import com.medica.core.controller.DiagnosisCoreService;
 import com.medica.integration.repository.DiagnosisDataRepository;
+import com.medica.integration.repository.DiagnosisResultRepository;
+import com.medica.integration.repository.DiagnosisRuleRepository;
 import com.medica.integration.repository.UserRepository;
 import com.medica.integration.service.diagnosis.domain.ChoiceFieldValue;
 import com.medica.integration.service.diagnosis.domain.DiagnosisForm;
@@ -52,7 +55,7 @@ public class DiagnosisServiceImplTest {
 		}
 		
 		@Bean
-		public DiagnosisDataRepository diagnosisRepository() {
+		public DiagnosisDataRepository diagnosisDataRepository() {
 			return Mockito.mock(DiagnosisDataRepository.class);
 		}
 		
@@ -60,6 +63,22 @@ public class DiagnosisServiceImplTest {
 		public UserRepository userRepository() {
 			return Mockito.mock(UserRepository.class);
 		}
+		
+		@Bean
+		public DiagnosisRuleRepository diagnosisRuleRepository() {
+			return Mockito.mock(DiagnosisRuleRepository.class);
+		}
+		
+		@Bean
+		public DiagnosisResultRepository diagnosisResultRepository() {
+			return Mockito.mock(DiagnosisResultRepository.class);
+		}
+		
+		@Bean
+		public DiagnosisCoreService diagnosisCoreService() {
+			return Mockito.mock(DiagnosisCoreService.class);
+		}
+		
 		
 		@Bean
 		public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {

@@ -12,4 +12,6 @@ public interface DiagnosisDataRepository extends JpaRepository<DiagnosisData, Lo
 
 	public List<DiagnosisData> getByPatient(@Param(value = "patient") User patient);
 	
+	public DiagnosisData findTop1ByPatientOrderByDateSubtmittedDesc(@Param(value = "patient") User patient);
+	
 }

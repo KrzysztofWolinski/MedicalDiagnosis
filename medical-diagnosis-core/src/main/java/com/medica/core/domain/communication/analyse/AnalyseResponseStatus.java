@@ -3,7 +3,7 @@ package com.medica.core.domain.communication.analyse;
 public enum AnalyseResponseStatus {
 
 	OK("OK"),
-	INVALID("WARNING");
+	WARNING("WARNING");
 	
 	private final String status;
 	

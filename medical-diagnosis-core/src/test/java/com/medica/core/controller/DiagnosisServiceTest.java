@@ -21,11 +21,8 @@ import com.medica.core.domain.communication.analyse.AnalyseRequest;
 import com.medica.core.domain.communication.learn.LearnRequest;
 import com.medica.core.domain.communication.perform.PerformRequest;
 import com.medica.core.service.analyse.AnalyseService;
-import com.medica.core.service.analyse.impl.DefaultAnalyseService;
 import com.medica.core.service.learn.LearnService;
-import com.medica.core.service.learn.impl.DefaultLearnService;
 import com.medica.core.service.perform.PerformService;
-import com.medica.core.service.perform.impl.DefaultPerformService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { DiagnosisServiceTest.Config.class })
@@ -79,17 +76,17 @@ public class DiagnosisServiceTest {
 		
 		@Bean
 		public LearnService learnService() {
-			return Mockito.mock(DefaultLearnService.class);
+			return Mockito.mock(LearnService.class);
 		}
 		
 		@Bean
 		public PerformService performService() {
-			return Mockito.mock(DefaultPerformService.class);
+			return Mockito.mock(PerformService.class);
 		}
 		
 		@Bean
 		public AnalyseService analyseService() {
-			return Mockito.mock(DefaultAnalyseService.class);
+			return Mockito.mock(AnalyseService.class);
 		}
 		
 	}

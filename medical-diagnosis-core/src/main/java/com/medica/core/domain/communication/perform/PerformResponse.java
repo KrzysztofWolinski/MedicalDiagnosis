@@ -1,19 +1,17 @@
 package com.medica.core.domain.communication.perform;
 
-import java.util.List;
-
 import com.medica.core.domain.DiagnosisCoreResult;
 
 public class PerformResponse {
 
-	private List<DiagnosisCoreResult> resultList;
+	private DiagnosisCoreResult result;
 
-	public List<DiagnosisCoreResult> getResultList() {
-		return resultList;
+	public DiagnosisCoreResult getResult() {
+		return result;
 	}
 
-	public void setResultList(List<DiagnosisCoreResult> resultList) {
-		this.resultList = resultList;
+	public void setResult(DiagnosisCoreResult result) {
+		this.result = result;
 	}
-	
+
 }

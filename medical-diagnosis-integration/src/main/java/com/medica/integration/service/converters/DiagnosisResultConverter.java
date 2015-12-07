@@ -23,4 +23,20 @@ public class DiagnosisResultConverter {
 		
 		return output;
 	}
+	
+	public static DiagnosisCoreResult convertToDto(DiagnosisResult inputResult) {
+		DiagnosisCoreResult output = new DiagnosisCoreResult();
+		
+		// TODO implement
+		
+		return output;
+	}
+	
+	public static DiagnosisResult convertToDao(DiagnosisCoreResult inputResult) {
+		DiagnosisResult output = new DiagnosisResult();
+		
+		// TODO implement
+		
+		return output;
+	}
 }

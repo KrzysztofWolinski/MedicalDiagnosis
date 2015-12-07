@@ -25,4 +25,12 @@ public class DiagnosisDataConverter {
 		return output;
 	}
 	
+	public static DiagnosisCoreData convertToDto(DiagnosisData inputData) {
+		DiagnosisCoreData output = new DiagnosisCoreData();
+		
+		// TODO implement
+		
+		return output;
+	}
+	
 }
