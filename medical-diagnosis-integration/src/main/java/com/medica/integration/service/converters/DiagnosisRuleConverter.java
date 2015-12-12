@@ -3,7 +3,7 @@ package com.medica.integration.service.converters;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.medica.core.domain.DiagnosisCoreRule;
+import com.medica.core.domain.rule.DiagnosisCoreRule;
 import com.medica.integration.domain.diagnosis.DiagnosisRule;
 
 public class DiagnosisRuleConverter {

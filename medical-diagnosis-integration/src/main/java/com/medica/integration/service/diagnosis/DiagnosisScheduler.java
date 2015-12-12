@@ -10,9 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.medica.core.controller.DiagnosisCoreService;
 import com.medica.core.domain.DiagnosisCoreResult;
-import com.medica.core.domain.DiagnosisCoreRule;
 import com.medica.core.domain.communication.learn.LearnRequest;
 import com.medica.core.domain.communication.learn.LearnResponse;
+import com.medica.core.domain.rule.DiagnosisCoreRule;
 import com.medica.integration.domain.diagnosis.DiagnosisResult;
 import com.medica.integration.domain.diagnosis.DiagnosisRule;
 import com.medica.integration.repository.DiagnosisResultRepository;
@@ -25,13 +25,13 @@ import com.medica.integration.service.converters.DiagnosisRuleConverter;
 public class DiagnosisScheduler {
 
 	@Inject
-	DiagnosisResultRepository diagnosisResultRepository;
+	private DiagnosisResultRepository diagnosisResultRepository;
 	
 	@Inject
-	DiagnosisRuleRepository diagnosisRuleRepository;
+	private DiagnosisRuleRepository diagnosisRuleRepository;
 	
 	@Inject
-	DiagnosisCoreService diagnosisCoreService;
+	private DiagnosisCoreService diagnosisCoreService;
 	
 	@Scheduled(fixedDelayString = "${diagnosis.learn.time_interval}")
 	public void runLearnService() {

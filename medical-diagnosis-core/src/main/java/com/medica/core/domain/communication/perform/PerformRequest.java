@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.medica.core.domain.DiagnosisCoreData;
-import com.medica.core.domain.DiagnosisCoreRule;
+import com.medica.core.domain.rule.DiagnosisCoreRule;
 
 public class PerformRequest {
 

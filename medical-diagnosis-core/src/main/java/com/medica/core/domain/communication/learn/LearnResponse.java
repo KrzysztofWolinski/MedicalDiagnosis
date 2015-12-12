@@ -2,7 +2,7 @@ package com.medica.core.domain.communication.learn;
 
 import java.util.List;
 
-import com.medica.core.domain.DiagnosisCoreRule;
+import com.medica.core.domain.rule.DiagnosisCoreRule;
 
 public class LearnResponse {
 
