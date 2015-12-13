@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import com.medica.integration.domain.EntityLongId;
@@ -27,6 +28,9 @@ public class DiagnosisData extends EntityLongId {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<DataPiece> data = new ArrayList<DataPiece>();
 
+	@OneToOne
+	private DiagnosisResult diagnosisResult;
+	
 	public DiagnosisData() {
 		this.dateSubtmitted = new Date();
 	}
@@ -57,6 +61,14 @@ public class DiagnosisData extends EntityLongId {
 	
 	public void addDataPiece(DataPiece dataPiece) {
 		this.data.add(dataPiece);
+	}
+
+	public DiagnosisResult getDiagnosisResult() {
+		return diagnosisResult;
+	}
+
+	public void setDiagnosisResult(DiagnosisResult diagnosisResult) {
+		this.diagnosisResult = diagnosisResult;
 	}
 	
 }

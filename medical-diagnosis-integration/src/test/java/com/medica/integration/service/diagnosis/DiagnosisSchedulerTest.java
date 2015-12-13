@@ -21,8 +21,9 @@ import com.medica.core.controller.DiagnosisCoreService;
 import com.medica.core.domain.communication.learn.LearnRequest;
 import com.medica.core.domain.communication.learn.LearnResponse;
 import com.medica.integration.config.BaseTestConfig;
-import com.medica.integration.domain.diagnosis.DiagnosisResult;
+import com.medica.integration.domain.diagnosis.DiagnosisData;
 import com.medica.integration.domain.diagnosis.DiagnosisRule;
+import com.medica.integration.repository.DiagnosisDataRepository;
 import com.medica.integration.repository.DiagnosisResultRepository;
 import com.medica.integration.repository.DiagnosisRuleRepository;
 
@@ -31,7 +32,7 @@ import com.medica.integration.repository.DiagnosisRuleRepository;
 public class DiagnosisSchedulerTest {
 
 	@Inject
-	private DiagnosisResultRepository diagnosisResultRepository;
+	private DiagnosisDataRepository diagnosisDataRepository;
 	
 	@Inject
 	private DiagnosisRuleRepository diagnosisRuleRepository;
@@ -44,12 +45,12 @@ public class DiagnosisSchedulerTest {
 	
 	@Test
 	public void shouldInitializeContext() {
-		when(diagnosisResultRepository.findByRatedTrue()).thenReturn(Arrays.asList(new DiagnosisResult()));
+		when(diagnosisDataRepository.findRatedData()).thenReturn(Arrays.asList(new DiagnosisData()));
 		when(diagnosisCoreService.learn(Mockito.any(LearnRequest.class))).thenReturn(new LearnResponse());
 		
 		diagnosisScheduler.runLearnService();
 		
-		verify(diagnosisResultRepository, times(1)).findByRatedTrue();
+		verify(diagnosisDataRepository, times(1)).findRatedData();
 		verify(diagnosisCoreService, times(1)).learn(Mockito.any(LearnRequest.class));
 		verify(diagnosisRuleRepository, times(1)).save(Mockito.anyListOf(DiagnosisRule.class));
 	}
@@ -66,6 +67,11 @@ public class DiagnosisSchedulerTest {
 		@Bean
 		public DiagnosisResultRepository diagnosisResultRepository() {
 			return Mockito.mock(DiagnosisResultRepository.class);
+		}
+		
+		@Bean
+		public DiagnosisDataRepository diagnosisDataRepository() {
+			return Mockito.mock(DiagnosisDataRepository.class);
 		}
 		
 		@Bean

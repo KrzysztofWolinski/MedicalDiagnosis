@@ -7,6 +7,8 @@ public class DiagnosisCoreData {
 
 	Map<String, CoreDataPiece> dataMap;
 	
+	DiagnosisCoreResult diagnosisResult;
+	
 	public CoreDataPiece getDataPiece(String name) {
 		if (dataMap != null) {
 			return dataMap.get(name);
@@ -22,4 +24,13 @@ public class DiagnosisCoreData {
 		
 		this.dataMap.put(dataPiece.getName(), dataPiece);
 	}
+
+	public DiagnosisCoreResult getDiagnosisResult() {
+		return diagnosisResult;
+	}
+
+	public void setDiagnosisResult(DiagnosisCoreResult diagnosisResult) {
+		this.diagnosisResult = diagnosisResult;
+	}
+	
 }

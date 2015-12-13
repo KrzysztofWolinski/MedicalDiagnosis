@@ -5,22 +5,12 @@ import java.util.Map;
 
 public class DiagnosisCoreResult {
 
-	private DiagnosisCoreData providedData;
-	
 	private Map<String, Integer> conditionProbability;
 
 	public DiagnosisCoreResult() {
 		this.conditionProbability = new HashMap<String, Integer>();
 	}
 	
-	public DiagnosisCoreData getProvidedData() {
-		return providedData;
-	}
-
-	public void setProvidedData(DiagnosisCoreData providedData) {
-		this.providedData = providedData;
-	}
-
 	public Map<String, Integer> getConditionProbability() {
 		return conditionProbability;
 	}

@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.medica.core.controller.DiagnosisCoreService;
-import com.medica.core.domain.DiagnosisCoreResult;
+import com.medica.core.domain.DiagnosisCoreData;
 import com.medica.core.domain.communication.learn.LearnRequest;
 import com.medica.core.domain.communication.learn.LearnResponse;
 import com.medica.core.domain.rule.DiagnosisCoreRule;
-import com.medica.integration.domain.diagnosis.DiagnosisResult;
+import com.medica.integration.domain.diagnosis.DiagnosisData;
 import com.medica.integration.domain.diagnosis.DiagnosisRule;
-import com.medica.integration.repository.DiagnosisResultRepository;
+import com.medica.integration.repository.DiagnosisDataRepository;
 import com.medica.integration.repository.DiagnosisRuleRepository;
-import com.medica.integration.service.converters.DiagnosisResultConverter;
+import com.medica.integration.service.converters.DiagnosisDataConverter;
 import com.medica.integration.service.converters.DiagnosisRuleConverter;
 
 @Service
@@ -25,24 +25,25 @@ import com.medica.integration.service.converters.DiagnosisRuleConverter;
 public class DiagnosisScheduler {
 
 	@Inject
-	private DiagnosisResultRepository diagnosisResultRepository;
+	private DiagnosisRuleRepository diagnosisRuleRepository;
 	
 	@Inject
-	private DiagnosisRuleRepository diagnosisRuleRepository;
+	private DiagnosisDataRepository diagnosisDataRepository;
 	
 	@Inject
 	private DiagnosisCoreService diagnosisCoreService;
 	
 	@Scheduled(fixedDelayString = "${diagnosis.learn.time_interval}")
 	public void runLearnService() {
-		List<DiagnosisResult> results = diagnosisResultRepository.findByRatedTrue();
+		//List<DiagnosisResult> results = diagnosisResultRepository.findByRatedTrue();
+		List<DiagnosisData> ratedData = diagnosisDataRepository.findRatedData();
 		
-		if (!results.isEmpty()) {
+		// TODO results -> data, teraz w wynikach nie ma danych
+		if (!ratedData.isEmpty()) {
 			LearnRequest request = new LearnRequest();
 
-			List<DiagnosisCoreResult> convertedResults = DiagnosisResultConverter.convertToDto(results);
-			
-			request.setResults(convertedResults);
+			List<DiagnosisCoreData> convertedData = DiagnosisDataConverter.convertToDto(ratedData);
+			request.setData(convertedData);
 			
 			LearnResponse response = diagnosisCoreService.learn(request);
 			

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.medica.core.domain.DiagnosisCoreData;
 import com.medica.core.domain.DiagnosisCoreResult;
 import com.medica.integration.domain.diagnosis.ConditionProbability;
 import com.medica.integration.domain.diagnosis.DiagnosisResult;
@@ -51,11 +50,7 @@ public class DiagnosisResultConverter {
 	public static DiagnosisCoreResult convertToDto(DiagnosisResult result) {
 		DiagnosisCoreResult convertedResult = new DiagnosisCoreResult();
 		
-		DiagnosisCoreData convertedData = DiagnosisDataConverter.convertToDto(result.getDiagnosedData());
-		
-		convertedResult.setProvidedData(convertedData);
-		
-		if (result.getConditionsProbablity() != null) {
+		if (result != null) {
 			for (ConditionProbability conditionProbability : result.getConditionsProbablity()) {
 				convertedResult.addConditionProbability(conditionProbability.getDiseaseName(), conditionProbability.getProbability());
 			}

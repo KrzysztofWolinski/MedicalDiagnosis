@@ -140,10 +140,11 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 		if (response.getResult() != null) {
 			DiagnosisResult result = DiagnosisResultConverter.convertToDao(response.getResult());
 			
-			result.setDiagnosedData(lastDataEntry);
 			result.setPatient(patient);
+			lastDataEntry.setDiagnosisResult(result);
 			
 			diagnosisResultRepository.saveAndFlush(result);
+			diagnosisDataRepository.saveAndFlush(lastDataEntry);
 			
 			// TODO inform patient?
 		}

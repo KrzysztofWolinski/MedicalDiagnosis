@@ -12,7 +12,6 @@ public class DefaultPerformService implements PerformService {
 	@Override
 	public DiagnosisCoreResult performDiagnosis(DiagnosisCoreData currentData, List<DiagnosisCoreRule> rules) {
 		DiagnosisCoreResult result = new DiagnosisCoreResult();
-		result.setProvidedData(currentData);
 
 		for (DiagnosisCoreRule rule : rules) {
 			boolean evaluationResult = rule.evaluate(currentData);

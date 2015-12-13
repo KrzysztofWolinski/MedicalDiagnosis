@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 import com.medica.integration.domain.EntityLongId;
@@ -22,10 +21,6 @@ public class DiagnosisResult extends EntityLongId {
 	@NotNull
 	@ManyToOne
 	private User patient;
-
-	@NotNull
-	@OneToOne
-	private DiagnosisData diagnosedData;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<ConditionProbability> conditionsProbablity;
@@ -44,14 +39,6 @@ public class DiagnosisResult extends EntityLongId {
 
 	public void setConditionsProbablity(List<ConditionProbability> conditionsProbablity) {
 		this.conditionsProbablity = conditionsProbablity;
-	}
-
-	public DiagnosisData getDiagnosedData() {
-		return diagnosedData;
-	}
-
-	public void setDiagnosedData(DiagnosisData diagnosedData) {
-		this.diagnosedData = diagnosedData;
 	}
 
 	public boolean isRated() {
