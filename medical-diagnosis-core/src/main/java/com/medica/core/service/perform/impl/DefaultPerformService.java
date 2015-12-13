@@ -11,8 +11,18 @@ public class DefaultPerformService implements PerformService {
 
 	@Override
 	public DiagnosisCoreResult performDiagnosis(DiagnosisCoreData currentData, List<DiagnosisCoreRule> rules) {
-		// TODO Auto-generated method stub
-		return null;
+		DiagnosisCoreResult result = new DiagnosisCoreResult();
+		result.setProvidedData(currentData);
+
+		for (DiagnosisCoreRule rule : rules) {
+			boolean evaluationResult = rule.evaluate(currentData);
+			
+			if (evaluationResult) {
+				result.addConditionProbability(rule.getDecision(), rule.getProbability());
+			}
+		}
+		
+		return result;
 	}
 
 }

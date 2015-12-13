@@ -8,6 +8,8 @@ public class DiagnosisCoreRule {
 	private Expression expression;
 	
 	private String decision;
+	
+	private Integer probability;
 
 	public Expression getExpression() {
 		return expression;
@@ -31,5 +33,13 @@ public class DiagnosisCoreRule {
 		} else {
 			return false;
 		}
+	}
+
+	public Integer getProbability() {
+		return probability;
+	}
+
+	public void setProbability(Integer probability) {
+		this.probability = probability;
 	}
 }
