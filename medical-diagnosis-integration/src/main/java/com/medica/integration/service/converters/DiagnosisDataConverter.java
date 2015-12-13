@@ -3,24 +3,20 @@ package com.medica.integration.service.converters;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.medica.core.domain.CoreDataPiece;
 import com.medica.core.domain.DiagnosisCoreData;
+import com.medica.integration.domain.diagnosis.DataPiece;
 import com.medica.integration.domain.diagnosis.DiagnosisData;
 
 
 public class DiagnosisDataConverter {
-
-	public static List<DiagnosisData> convertToDao(List<DiagnosisCoreData> inputData) {
-		List<DiagnosisData> output = new ArrayList<DiagnosisData>();
-		
-		// TODO implemet
-		
-		return output;
-	}
 	
 	public static List<DiagnosisCoreData> convertToDto(List<DiagnosisData> inputData) {
 		List<DiagnosisCoreData> output = new ArrayList<DiagnosisCoreData>();
 		
-		// TODO implemet
+		for (DiagnosisData data : inputData) {
+			output.add(convertToDto(data));
+		}
 		
 		return output;
 	}
@@ -28,7 +24,15 @@ public class DiagnosisDataConverter {
 	public static DiagnosisCoreData convertToDto(DiagnosisData inputData) {
 		DiagnosisCoreData output = new DiagnosisCoreData();
 		
-		// TODO implement
+		if (inputData != null) {
+			for (DataPiece dataPiece : inputData.getData()) {
+				CoreDataPiece convertedDataPiece = new CoreDataPiece();
+				convertedDataPiece.setName(dataPiece.getName());
+				convertedDataPiece.setValue(dataPiece.getValue());
+				
+				output.addDataPiece(convertedDataPiece);
+			}
+		}
 		
 		return output;
 	}
