@@ -28,8 +28,10 @@ import com.medica.integration.service.auth.AuthService;
 import com.medica.integration.service.auth.TokenGeneratorService;
 import com.medica.integration.service.auth.impl.AuthServiceImpl;
 import com.medica.integration.service.auth.impl.TokenGeneratorServiceImpl;
+import com.medica.integration.service.diagnosis.DiagnosisService;
 import com.medica.integration.service.diagnosis.domain.ChoiceFieldValue;
 import com.medica.integration.service.diagnosis.domain.SimpleFieldValue;
+import com.medica.integration.service.diagnosis.impl.DiagnosisServiceImpl;
 import com.medica.integration.service.history.HistoryService;
 import com.medica.integration.service.history.impl.HistoryServiceImpl;
 import com.medica.integration.service.user.UserService;
@@ -61,6 +63,11 @@ class RootConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public HistoryService historyService() {
 		return new HistoryServiceImpl();
+	}
+	
+	@Bean
+	public DiagnosisService diagnosisService() {
+		return new DiagnosisServiceImpl();
 	}
 	
 	@Bean

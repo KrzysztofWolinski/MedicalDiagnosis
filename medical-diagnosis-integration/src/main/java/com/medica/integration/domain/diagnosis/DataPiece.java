@@ -1,20 +1,14 @@
 package com.medica.integration.domain.diagnosis;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import com.medica.integration.domain.EntityLongId;
 import com.medica.integration.service.diagnosis.domain.FieldValueType;
 
 @Entity(name = "data_pieces")
-public class DataPiece {
+public class DataPiece extends EntityLongId {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	
 	@NotNull
 	private String name;
 	
