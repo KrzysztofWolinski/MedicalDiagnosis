@@ -35,10 +35,8 @@ public class DiagnosisScheduler {
 	
 	@Scheduled(fixedDelayString = "${diagnosis.learn.time_interval}")
 	public void runLearnService() {
-		//List<DiagnosisResult> results = diagnosisResultRepository.findByRatedTrue();
 		List<DiagnosisData> ratedData = diagnosisDataRepository.findRatedData();
 		
-		// TODO results -> data, teraz w wynikach nie ma danych
 		if (!ratedData.isEmpty()) {
 			LearnRequest request = new LearnRequest();
 
@@ -51,7 +49,10 @@ public class DiagnosisScheduler {
 			
 			List<DiagnosisRule> convertedRules = DiagnosisRuleConverter.convertToDao(generatedRules);
 			
-			diagnosisRuleRepository.save(convertedRules);
+			if (!convertedRules.isEmpty()) {
+				diagnosisRuleRepository.deleteAll();
+				diagnosisRuleRepository.save(convertedRules);
+			}
 		}
 		
 	}

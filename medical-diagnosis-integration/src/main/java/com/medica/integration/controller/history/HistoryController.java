@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.medica.integration.controller.history.domain.HistoryGetDataByDateResponse;
 import com.medica.integration.controller.history.domain.HistoryGetDataByNameResponse;
+import com.medica.integration.controller.history.domain.HistoryGetDataDetailsRequest;
+import com.medica.integration.controller.history.domain.HistoryGetDataDetailsResponse;
 import com.medica.integration.controller.history.domain.HistoryGetDataRequest;
-import com.medica.integration.controller.history.domain.HistoryGetDiagnosesHistoryResponse;
+import com.medica.integration.controller.history.domain.HistoryReviewResultRequest;
 import com.medica.integration.service.auth.AuthService;
 import com.medica.integration.service.auth.exceptions.InvalidCredentialsException;
 import com.medica.integration.service.history.HistoryService;
 import com.medica.integration.service.history.domain.HistoryByDateDataBlock;
 import com.medica.integration.service.history.domain.HistoryByNameDataBlock;
-import com.medica.integration.service.history.domain.HistoryDiagnosesDataBlock;
 
 @RestController
 @RequestMapping("/history")
@@ -54,15 +55,26 @@ public class HistoryController {
 		}
     }
 	
-	@RequestMapping(value = "/diagnoses", method = RequestMethod.POST)
-    public HistoryGetDiagnosesHistoryResponse getUserDiagnosesHistory(@RequestBody HistoryGetDataRequest request) throws InvalidCredentialsException {  	
+	@RequestMapping(value = "/results", method = RequestMethod.POST)
+    public HistoryGetDataDetailsResponse getDataDetails(@RequestBody HistoryGetDataDetailsRequest request) throws InvalidCredentialsException {  	
 		if (authService.isAuthorized(request.getUsername(), request.getToken())) {
-			List<HistoryDiagnosesDataBlock> data = this.historyService.getDiagnosesData(request.getUsername());
-			
-			return new HistoryGetDiagnosesHistoryResponse(data);
+						
+			return this.historyService.getDataDetails(request.getUsername(), request.getDataId());
 			
 		} else {
 			throw new InvalidCredentialsException();
 		}
     }
+	
+	@RequestMapping(value = "/review", method = RequestMethod.POST)
+    public void reviewDiagnosis(@RequestBody HistoryReviewResultRequest request) throws InvalidCredentialsException {  	
+		if (authService.isAuthorized(request.getUsername(), request.getToken())) {
+						
+			historyService.reviewDiagnosisDataResults(request.getUsername(), request.getDataId(), request.getNewConditionProbabilities());
+			
+		} else {
+			throw new InvalidCredentialsException();
+		}
+    }
+	
 }

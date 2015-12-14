@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
+import org.springframework.transaction.annotation.Transactional;
+
+import com.medica.integration.controller.history.domain.HistoryGetDataDetailsResponse;
+import com.medica.integration.domain.diagnosis.ConditionProbability;
 import com.medica.integration.domain.diagnosis.DataPiece;
 import com.medica.integration.domain.diagnosis.DiagnosisData;
 import com.medica.integration.domain.user.User;
@@ -17,8 +21,11 @@ import com.medica.integration.service.history.domain.HistoryByDateDataBlock;
 import com.medica.integration.service.history.domain.HistoryByDateDataPiece;
 import com.medica.integration.service.history.domain.HistoryByNameDataBlock;
 import com.medica.integration.service.history.domain.HistoryByNameDataPiece;
+import com.medica.integration.service.history.domain.HistoryConditionProbability;
+import com.medica.integration.service.history.domain.HistoryDataDetails;
 import com.medica.integration.service.history.domain.HistoryDiagnosesDataBlock;
 
+@Transactional
 public class HistoryServiceImpl implements HistoryService {
 
 	@Inject
@@ -86,19 +93,87 @@ public class HistoryServiceImpl implements HistoryService {
 		List<HistoryByDateDataBlock> convertedData = new ArrayList<HistoryByDateDataBlock>();
 		
 		for (DiagnosisData data : rawData) {
-			HistoryByDateDataBlock dataBlock = new HistoryByDateDataBlock();
-			
-			List<HistoryByDateDataPiece> dataPieces = data.getData().stream().map(d -> {
-				return new HistoryByDateDataPiece(d.getName(),d.getValue(), d.getType());
-			}).collect(Collectors.toList());
-
-			dataBlock.setDate(data.getDateSubtmitted());
-			dataBlock.setData(dataPieces);
-			
-			convertedData.add(dataBlock);
+			convertedData.add(convertDataToDataByDate(data));
 		}
 		
 		return convertedData;
+	}
+	
+	private HistoryByDateDataBlock convertDataToDataByDate(DiagnosisData data) {
+		HistoryByDateDataBlock dataBlock = new HistoryByDateDataBlock();
+		
+		List<HistoryByDateDataPiece> dataPieces = data.getData().stream().map(d -> {
+			return new HistoryByDateDataPiece(d.getName(),d.getValue(), d.getType());
+		}).collect(Collectors.toList());
+
+		dataBlock.setDataId(data.getId());
+		dataBlock.setRated(data.getDiagnosisResult().isRated());
+		dataBlock.setDate(data.getDateSubtmitted());
+		dataBlock.setData(dataPieces);
+		
+		return dataBlock;
+	}
+
+	@Override
+	public HistoryGetDataDetailsResponse getDataDetails(String username, Long id) {
+		DiagnosisData retrivedData = diagnosisDataRepository.getOne(id);
+		
+		// TODO check username
+		
+		if (retrivedData != null) {
+			HistoryGetDataDetailsResponse response = new HistoryGetDataDetailsResponse();
+			HistoryDataDetails dataDetails = new HistoryDataDetails();
+			
+			HistoryByDateDataBlock convertedData = convertDataToDataByDate(retrivedData);
+			List<HistoryConditionProbability> conditionProbabilityList = new ArrayList<>();
+			
+			if (retrivedData.getDiagnosisResult() != null) {
+				List<ConditionProbability> retrivedConditionProbabilityList = retrivedData.getDiagnosisResult().getConditionsProbablity();
+				
+				for (ConditionProbability probability : retrivedConditionProbabilityList) {
+					HistoryConditionProbability historyConditionProbability = new HistoryConditionProbability();
+					historyConditionProbability.setDiseaseName(probability.getDiseaseName());
+					historyConditionProbability.setProbability(probability.getProbability());
+					
+					conditionProbabilityList.add(historyConditionProbability);
+				}
+			}
+			
+			dataDetails.setConditionProbability(conditionProbabilityList);
+			dataDetails.setDataBlock(convertedData);
+			
+			response.setData(dataDetails);
+			
+			return response;
+			
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	public void reviewDiagnosisDataResults(String username, Long id, List<HistoryConditionProbability> newConditionProbabilities) {
+		DiagnosisData retrivedData = diagnosisDataRepository.getOne(id);
+		
+		// TODO check username
+		// TODO check if data is valid
+		if (retrivedData != null) {
+			List<ConditionProbability> conditionProbabilityList = new ArrayList<ConditionProbability>();
+			
+			for (HistoryConditionProbability probability : newConditionProbabilities) {
+				ConditionProbability conditionProbability = new ConditionProbability();
+				conditionProbability.setDiseaseName(probability.getDiseaseName());
+				conditionProbability.setProbability(100);
+				
+				conditionProbabilityList.add(conditionProbability);
+			}
+
+			retrivedData.getDiagnosisResult().setConditionsProbablity(conditionProbabilityList);
+			
+			this.diagnosisDataRepository.saveAndFlush(retrivedData);
+			
+		}
+		
 	}
 
 }

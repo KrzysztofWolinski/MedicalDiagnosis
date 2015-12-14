@@ -69,23 +69,11 @@ public class DiagnosisController {
 		}
 	}
 	
-	@RequestMapping(value = "/perform", method = RequestMethod.POST)
-	public DiagnosisSubmitFormResponse performDiagnosis() {
-		// TODO mock
-		return new DiagnosisSubmitFormResponse();
-	}
-	
 	// TODO ?
 	@RequestMapping(value = "/conditions", method = RequestMethod.POST)
 	public String getListOfConditions() {
 		// TODO mock
 		return "diagnosis:getListOfConditions";
 	}
-	
-	@RequestMapping(value = "/rate", method = RequestMethod.POST)
-	public String rateDiagnosis() {
-		// TODO mock
-		return "diagnosis:rateDiagnosis";
-	}
-	
+
 }

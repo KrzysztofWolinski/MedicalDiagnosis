@@ -28,7 +28,7 @@ public class DiagnosisData extends EntityLongId {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<DataPiece> data = new ArrayList<DataPiece>();
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private DiagnosisResult diagnosisResult;
 	
 	public DiagnosisData() {
