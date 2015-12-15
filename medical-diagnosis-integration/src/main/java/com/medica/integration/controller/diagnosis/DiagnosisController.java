@@ -2,6 +2,7 @@ package com.medica.integration.controller.diagnosis;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,13 +26,16 @@ import com.medica.integration.service.diagnosis.domain.DiagnosisForm;
 public class DiagnosisController {
 
 	@Inject
-	DiagnosisService diagnosisService;
+	private DiagnosisService diagnosisService;
 	
 	@Inject
-	UserRepository userRepository;
+	private UserRepository userRepository;
 	
 	@Inject
-	AuthService authService;
+	private AuthService authService;
+	
+	@Value("${diagnosis.condition-list}")
+	private String[] conditionList;
 	
 	@RequestMapping(value = "/form", method = RequestMethod.POST)
 	@ResponseBody
@@ -69,11 +73,9 @@ public class DiagnosisController {
 		}
 	}
 	
-	// TODO ?
-	@RequestMapping(value = "/conditions", method = RequestMethod.POST)
-	public String getListOfConditions() {
-		// TODO mock
-		return "diagnosis:getListOfConditions";
+	@RequestMapping(value = "/conditions", method = RequestMethod.GET)
+	public String[] getListOfPossibleConditions() {
+		return this.conditionList;
 	}
 
 }

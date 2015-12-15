@@ -116,10 +116,9 @@ public class HistoryServiceImpl implements HistoryService {
 
 	@Override
 	public HistoryGetDataDetailsResponse getDataDetails(String username, Long id) {
-		DiagnosisData retrivedData = diagnosisDataRepository.getOne(id);
+		DiagnosisData retrivedData = diagnosisDataRepository.findById(id);
 		
 		// TODO check username
-		
 		if (retrivedData != null) {
 			HistoryGetDataDetailsResponse response = new HistoryGetDataDetailsResponse();
 			HistoryDataDetails dataDetails = new HistoryDataDetails();
@@ -157,7 +156,7 @@ public class HistoryServiceImpl implements HistoryService {
 		
 		// TODO check username
 		// TODO check if data is valid
-		if (retrivedData != null) {
+		if ((retrivedData != null) && (!newConditionProbabilities.isEmpty())) {
 			List<ConditionProbability> conditionProbabilityList = new ArrayList<ConditionProbability>();
 			
 			for (HistoryConditionProbability probability : newConditionProbabilities) {
@@ -169,9 +168,9 @@ public class HistoryServiceImpl implements HistoryService {
 			}
 
 			retrivedData.getDiagnosisResult().setConditionsProbablity(conditionProbabilityList);
+			retrivedData.getDiagnosisResult().setRated(true);
 			
 			this.diagnosisDataRepository.saveAndFlush(retrivedData);
-			
 		}
 		
 	}

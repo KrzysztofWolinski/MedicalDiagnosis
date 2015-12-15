@@ -15,7 +15,4 @@ public interface DiagnosisService {
 	
 	public void requestPerformDiagnosis(User user);
 	
-	// TODO rate diagnosis
-	
-	
 }
