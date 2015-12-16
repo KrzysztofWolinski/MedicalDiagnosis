@@ -3,6 +3,7 @@ package com.medica.integration.controller.diagnosis;
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -78,4 +79,14 @@ public class DiagnosisController {
 		return this.conditionList;
 	}
 
+	@RequestMapping(value = "/count-new/{username}", method = RequestMethod.GET)
+	public int countNewDiagnoses(@PathVariable String username) {
+		User user = userRepository.findByUsername(username);
+		
+		if (user != null) {
+			return diagnosisService.countNewDiagnosisResults(user);
+		} else {
+			return 0;
+		}
+	}
 }

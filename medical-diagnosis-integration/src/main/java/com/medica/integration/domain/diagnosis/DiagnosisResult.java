@@ -7,16 +7,21 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.medica.integration.domain.EntityLongId;
 import com.medica.integration.domain.user.User;
 
-@Entity(name = "diagnosis_results")
+@Entity
+@Table(name = "diagnosis_results")
 public class DiagnosisResult extends EntityLongId {
 
 	@NotNull
 	private Boolean rated = false;
+	
+	@NotNull
+	private Boolean recentlyAdded = true;
 	
 	@NotNull
 	@ManyToOne
@@ -49,4 +54,11 @@ public class DiagnosisResult extends EntityLongId {
 		this.rated = rated;
 	}
 	
+	public Boolean getRecentlyAdded() {
+		return recentlyAdded;
+	}
+
+	public void setRecentlyAdded(Boolean recentlyAdded) {
+		this.recentlyAdded = recentlyAdded;
+	}
 }

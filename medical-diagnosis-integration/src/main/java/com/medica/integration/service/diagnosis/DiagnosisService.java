@@ -15,4 +15,6 @@ public interface DiagnosisService {
 	
 	public void requestPerformDiagnosis(User user);
 	
+	public int countNewDiagnosisResults(User user);
+	
 }

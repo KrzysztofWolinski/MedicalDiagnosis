@@ -7,6 +7,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.medica.core.controller.DiagnosisCoreService;
@@ -35,6 +36,7 @@ import com.medica.integration.service.diagnosis.domain.DiagnosisForm;
 import com.medica.integration.service.diagnosis.domain.FieldGroup;
 import com.medica.integration.service.diagnosis.domain.FieldValue;
 
+@Transactional
 public class DiagnosisServiceImpl implements DiagnosisService {
 
 	@Inject
@@ -142,12 +144,16 @@ public class DiagnosisServiceImpl implements DiagnosisService {
 			
 			result.setPatient(patient);
 			lastDataEntry.setDiagnosisResult(result);
+			result.setRecentlyAdded(true);
 			
 			diagnosisResultRepository.saveAndFlush(result);
 			diagnosisDataRepository.saveAndFlush(lastDataEntry);
-			
-			// TODO inform patient?
 		}
+	}
+
+	@Override
+	public int countNewDiagnosisResults(User user) {
+		return diagnosisResultRepository.countNewDiagnosisResults(user);
 	}
 
 }

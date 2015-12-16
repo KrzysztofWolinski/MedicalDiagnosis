@@ -13,8 +13,10 @@ import com.medica.integration.controller.history.domain.HistoryGetDataDetailsRes
 import com.medica.integration.domain.diagnosis.ConditionProbability;
 import com.medica.integration.domain.diagnosis.DataPiece;
 import com.medica.integration.domain.diagnosis.DiagnosisData;
+import com.medica.integration.domain.diagnosis.DiagnosisResult;
 import com.medica.integration.domain.user.User;
 import com.medica.integration.repository.DiagnosisDataRepository;
+import com.medica.integration.repository.DiagnosisResultRepository;
 import com.medica.integration.repository.UserRepository;
 import com.medica.integration.service.history.HistoryService;
 import com.medica.integration.service.history.domain.HistoryByDateDataBlock;
@@ -29,7 +31,10 @@ import com.medica.integration.service.history.domain.HistoryDiagnosesDataBlock;
 public class HistoryServiceImpl implements HistoryService {
 
 	@Inject
-	DiagnosisDataRepository diagnosisDataRepository; 
+	DiagnosisDataRepository diagnosisDataRepository;
+	
+	@Inject
+	DiagnosisResultRepository diagnosisResultRepository;
 	
 	@Inject
 	UserRepository userRepository;
@@ -136,6 +141,10 @@ public class HistoryServiceImpl implements HistoryService {
 					
 					conditionProbabilityList.add(historyConditionProbability);
 				}
+				
+				// Update diagnosis status
+				retrivedData.getDiagnosisResult().setRecentlyAdded(false);
+				diagnosisDataRepository.saveAndFlush(retrivedData);
 			}
 			
 			dataDetails.setConditionProbability(conditionProbabilityList);
@@ -167,10 +176,11 @@ public class HistoryServiceImpl implements HistoryService {
 				conditionProbabilityList.add(conditionProbability);
 			}
 
-			retrivedData.getDiagnosisResult().setConditionsProbablity(conditionProbabilityList);
-			retrivedData.getDiagnosisResult().setRated(true);
+			DiagnosisResult diagnosisResult = retrivedData.getDiagnosisResult();
+			diagnosisResult.setConditionsProbablity(conditionProbabilityList);
+			diagnosisResult.setRated(true);
 			
-			this.diagnosisDataRepository.saveAndFlush(retrivedData);
+			this.diagnosisResultRepository.save(diagnosisResult);
 		}
 		
 	}
