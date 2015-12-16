@@ -9,6 +9,8 @@ public abstract class FieldValue {
 	
 	private FieldValueType type;
 	
+	private String unit;
+	
 	public abstract Object getValue();
 	
 	public String getName() {
@@ -25,6 +27,14 @@ public abstract class FieldValue {
 
 	public void setType(FieldValueType type) {
 		this.type = type;
+	}
+
+	public String getUnit() {
+		return unit;
+	}
+
+	public void setUnit(String unit) {
+		this.unit = unit;
 	}
 
 }

@@ -1,48 +1,39 @@
 {
     "formFieldGroups": [
-        {
-            "name": "Blood test results",
+    	{
+            "name": "General:",
             "fieldList": [
                 {
                     "@type": "SimpleFieldValue",
-                    "name": "WBC",
+                    "name": "Temperature",
                     "type": "FLOAT",
-                    "value": null
+                    "value": "36.6",
+                    "unit": "C"
                 },
                 {
                     "@type": "SimpleFieldValue",
-                    "name": "RBC",
-                    "type": "FLOAT",
-                    "value": null
+                    "name": "Blood pressure (SYS)",
+                    "type": "INTEGER",
+                    "value": "",
+                    "unit": "mm Hg"
                 },
                 {
                     "@type": "SimpleFieldValue",
-                    "name": "HGB",
-                    "type": "FLOAT",
-                    "value": null
+                    "name": "Blood pressure (DIA)",
+                    "type": "INTEGER",
+                    "value": "",
+                    "unit": "mm Hg"
                 },
                 {
-                    "@type": "SimpleFieldValue",
-                    "name": "HCT",
-                    "type": "FLOAT",
-                    "value": null
-                },
-                {
-                    "@type": "SimpleFieldValue",
-                    "name": "MCV",
-                    "type": "FLOAT",
-                    "value": null
-                }
-            ]
-        },
-        {
-            "name": "Other",
-            "fieldList": [
-                {
-                    "@type": "SimpleFieldValue",
-                    "name": "Fever",
-                    "type": "FLOAT",
-                    "value": "36.6"
+                    "@type": "ChoiceFieldValue",
+                    "name": "Headache",
+                    "type": "STRING",
+                    "possibleValues": [
+                        "Yes",
+                        "No"
+                    ],
+                    "value": "No",
+                    "unit": ""
                 },
                 {
                     "@type": "ChoiceFieldValue",
@@ -55,7 +46,83 @@
                         "Not good",
                         "Bad"
                     ],
-                    "value": "Ok"
+                    "value": "Ok",
+                    "unit": ""
+                }
+            ]
+        },
+        {
+            "name": "CBC (Complete blood count):",
+            "fieldList": [
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "RBC",
+                    "type": "FLOAT",
+                    "value": null,
+                    "unit": "M/µl"
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "HGB",
+                    "type": "FLOAT",
+                    "value": null,
+                    "unit": "mmol/l"
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "HCT",
+                    "type": "FLOAT",
+                    "value": null,
+                    "unit": "%"
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "MCV",
+                    "type": "FLOAT",
+                    "value": null,
+                    "unit": "fl"
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "MCH",
+                    "type": "FLOAT",
+                    "value": null,
+                    "unit": "pg"
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "MCHC",
+                    "type": "FLOAT",
+                    "value": null,
+                    "unit": "mmol/l"
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "WBC",
+                    "type": "FLOAT",
+                    "value": null,
+                    "unit": "K/µl"
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "LYM",
+                    "type": "FLOAT",
+                    "value": null,
+                    "unit": "K/µl"
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "MONO",
+                    "type": "FLOAT",
+                    "value": null,
+                    "unit": "K/µl"
+                },
+                {
+                    "@type": "SimpleFieldValue",
+                    "name": "PLT",
+                    "type": "FLOAT",
+                    "value": null,
+                    "unit": "K/µl"
                 }
             ]
         }
