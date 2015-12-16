@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.medica.integration.controller.history.domain.HistoryDeleteDataRequest;
 import com.medica.integration.controller.history.domain.HistoryGetDataByDateResponse;
 import com.medica.integration.controller.history.domain.HistoryGetDataByNameResponse;
 import com.medica.integration.controller.history.domain.HistoryGetDataDetailsRequest;
@@ -76,5 +78,16 @@ public class HistoryController {
 			throw new InvalidCredentialsException();
 		}
     }
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
+	public void deleteSingleDataSet(@PathVariable Long id, @RequestBody HistoryDeleteDataRequest request) throws InvalidCredentialsException {
+		if (authService.isAuthorized(request.getUsername(), request.getToken())) {
+			
+			historyService.deleteSingliDataSet(id, request.getUsername());
+			
+		} else {
+			throw new InvalidCredentialsException();
+		}
+	}
 	
 }

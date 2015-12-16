@@ -22,7 +22,7 @@ public class DiagnosisResult extends EntityLongId {
 	@ManyToOne
 	private User patient;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<ConditionProbability> conditionsProbablity;
 	
 	public User getPatient() {

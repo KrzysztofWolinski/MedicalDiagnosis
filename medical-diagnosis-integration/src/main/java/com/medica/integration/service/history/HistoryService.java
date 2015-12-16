@@ -19,4 +19,6 @@ public interface HistoryService {
 	public HistoryGetDataDetailsResponse getDataDetails(String username, Long id);
 	
 	public void reviewDiagnosisDataResults(String username, Long id, List<HistoryConditionProbability> newConditionProbabilities);
+	
+	public void deleteSingliDataSet(Long id, String username);
 }

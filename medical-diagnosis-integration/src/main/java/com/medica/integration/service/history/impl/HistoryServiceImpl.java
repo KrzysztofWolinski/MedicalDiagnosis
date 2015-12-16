@@ -156,7 +156,7 @@ public class HistoryServiceImpl implements HistoryService {
 		
 		// TODO check username
 		// TODO check if data is valid
-		if ((retrivedData != null) && (!newConditionProbabilities.isEmpty())) {
+		if (retrivedData != null) {
 			List<ConditionProbability> conditionProbabilityList = new ArrayList<ConditionProbability>();
 			
 			for (HistoryConditionProbability probability : newConditionProbabilities) {
@@ -173,6 +173,17 @@ public class HistoryServiceImpl implements HistoryService {
 			this.diagnosisDataRepository.saveAndFlush(retrivedData);
 		}
 		
+	}
+
+	@Override
+	public void deleteSingliDataSet(Long id, String username) {
+		User user = userRepository.findByUsername(username);
+		DiagnosisData data = diagnosisDataRepository.findById(id);
+		
+		if (user.equals(data.getPatient())) {
+			diagnosisDataRepository.delete(data);
+			diagnosisDataRepository.flush();
+		}
 	}
 
 }
