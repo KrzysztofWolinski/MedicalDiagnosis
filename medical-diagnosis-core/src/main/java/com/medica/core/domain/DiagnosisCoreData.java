@@ -1,13 +1,16 @@
 package com.medica.core.domain;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class DiagnosisCoreData {
 
-	Map<String, CoreDataPiece> dataMap;
+	private Map<String, CoreDataPiece> dataMap;
 	
-	DiagnosisCoreResult diagnosisResult;
+	private DiagnosisCoreResult diagnosisResult;
+	
+	private Date dateSubmitted;
 	
 	public CoreDataPiece getDataPiece(String name) {
 		if (dataMap != null) {
@@ -15,6 +18,10 @@ public class DiagnosisCoreData {
 		} else {
 			return null;
 		}
+	}
+	
+	public Map<String, CoreDataPiece> getDataMap() {
+		return dataMap;
 	}
 	
 	public void addDataPiece(CoreDataPiece dataPiece) {
@@ -31,6 +38,14 @@ public class DiagnosisCoreData {
 
 	public void setDiagnosisResult(DiagnosisCoreResult diagnosisResult) {
 		this.diagnosisResult = diagnosisResult;
+	}
+
+	public Date getDateSubmitted() {
+		return dateSubmitted;
+	}
+
+	public void setDateSubmitted(Date dateSubmitted) {
+		this.dateSubmitted = dateSubmitted;
 	}
 	
 }

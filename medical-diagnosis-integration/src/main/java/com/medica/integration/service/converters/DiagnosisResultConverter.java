@@ -50,6 +50,8 @@ public class DiagnosisResultConverter {
 	public static DiagnosisCoreResult convertToDto(DiagnosisResult result) {
 		DiagnosisCoreResult convertedResult = new DiagnosisCoreResult();
 		
+		convertedResult.setRated(result.isRated());
+		
 		if (result != null) {
 			for (ConditionProbability conditionProbability : result.getConditionsProbablity()) {
 				convertedResult.addConditionProbability(conditionProbability.getDiseaseName(), conditionProbability.getProbability());

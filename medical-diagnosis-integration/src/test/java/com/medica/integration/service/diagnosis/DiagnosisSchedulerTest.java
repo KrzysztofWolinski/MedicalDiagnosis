@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.medica.core.controller.DiagnosisCoreService;
 import com.medica.core.domain.communication.learn.LearnRequest;
 import com.medica.core.domain.communication.learn.LearnResponse;
+import com.medica.core.domain.rule.DiagnosisCoreRule;
 import com.medica.integration.config.BaseTestConfig;
 import com.medica.integration.domain.diagnosis.DiagnosisData;
 import com.medica.integration.domain.diagnosis.DiagnosisRule;
@@ -46,7 +47,10 @@ public class DiagnosisSchedulerTest {
 	@Test
 	public void shouldInitializeContext() {
 		when(diagnosisDataRepository.findRatedData()).thenReturn(Arrays.asList(new DiagnosisData()));
-		when(diagnosisCoreService.learn(Mockito.any(LearnRequest.class))).thenReturn(new LearnResponse());
+
+		LearnResponse mockResponse = new LearnResponse();
+		mockResponse.setRules(Arrays.asList(new DiagnosisCoreRule()));
+		when(diagnosisCoreService.learn(Mockito.any(LearnRequest.class))).thenReturn(mockResponse);
 		
 		diagnosisScheduler.runLearnService();
 		

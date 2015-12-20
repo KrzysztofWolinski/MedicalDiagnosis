@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import com.medica.core.controller.DiagnosisCoreService;
 import com.medica.core.controller.impl.DefaultDiagnosisCoreService;
 import com.medica.core.service.analyse.AnalyseService;
-import com.medica.core.service.analyse.impl.MockAnalyseService;
+import com.medica.core.service.analyse.impl.DefaultAnalyseService;
 import com.medica.core.service.learn.LearnService;
 import com.medica.core.service.learn.impl.MockLearnService;
 import com.medica.core.service.perform.PerformService;
@@ -22,7 +22,7 @@ public class DiagnosisCoreConfig {
 	
 	@Bean
 	public AnalyseService analyseService() {
-		return new MockAnalyseService();
+		return new DefaultAnalyseService();
 	}
 	
 	@Bean

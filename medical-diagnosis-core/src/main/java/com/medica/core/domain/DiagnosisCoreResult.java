@@ -7,6 +7,8 @@ public class DiagnosisCoreResult {
 
 	private Map<String, Integer> conditionProbability;
 
+	private boolean rated;
+	
 	public DiagnosisCoreResult() {
 		this.conditionProbability = new HashMap<String, Integer>();
 	}
@@ -23,6 +25,14 @@ public class DiagnosisCoreResult {
 		}
 		
 		this.conditionProbability.put(conditionName, probability);
+	}
+
+	public boolean isRated() {
+		return rated;
+	}
+
+	public void setRated(boolean rated) {
+		this.rated = rated;
 	}
 
 }

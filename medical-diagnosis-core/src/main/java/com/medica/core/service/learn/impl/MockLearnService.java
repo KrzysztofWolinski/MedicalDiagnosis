@@ -16,11 +16,11 @@ public class MockLearnService implements LearnService {
 		DiagnosisCoreRule mockRule = new DiagnosisCoreRule();
 		
 		SimpleExpression simpleExpression = new SimpleExpression();
-		simpleExpression.setAttributeName("TEST");
-		simpleExpression.setOperator(Operators.EQUAL);
-		simpleExpression.setValue("TEST_VALUE");
+		simpleExpression.setAttributeName("Temperature");
+		simpleExpression.setOperator(Operators.GREATER_THAN);
+		simpleExpression.setValue("38.0");
 		
-		mockRule.setDecision("TEST_DECISION");
+		mockRule.setDecision("FLU");
 		mockRule.setProbability(100);
 		mockRule.setExpression(simpleExpression);
 		

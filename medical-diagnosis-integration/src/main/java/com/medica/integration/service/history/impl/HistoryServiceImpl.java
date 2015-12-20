@@ -112,9 +112,14 @@ public class HistoryServiceImpl implements HistoryService {
 		}).collect(Collectors.toList());
 
 		dataBlock.setDataId(data.getId());
-		dataBlock.setRated(data.getDiagnosisResult().isRated());
 		dataBlock.setDate(data.getDateSubtmitted());
 		dataBlock.setData(dataPieces);
+
+		if (data.getDiagnosisResult() != null) {
+			dataBlock.setRated(data.getDiagnosisResult().isRated());
+		} else {
+			dataBlock.setRated(false);
+		}
 		
 		return dataBlock;
 	}

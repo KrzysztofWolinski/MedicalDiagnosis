@@ -28,9 +28,9 @@ public class SimpleExpression implements Expression {
 				case EQUAL :
 					return value.equals(dataPiece.getValue());
 				case GREATER_THAN:
-					return Integer.parseInt(dataPiece.getValue()) > Integer.parseInt(value);
+					return Float.parseFloat(dataPiece.getValue()) > Float.parseFloat(value);
 				case SMALLER_THAN:
-					return Integer.parseInt(dataPiece.getValue()) < Integer.parseInt(value);
+					return Float.parseFloat(dataPiece.getValue()) < Float.parseFloat(value);
 				default:
 					return false;
 			}

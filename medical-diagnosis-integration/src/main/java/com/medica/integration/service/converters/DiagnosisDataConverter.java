@@ -25,6 +25,8 @@ public class DiagnosisDataConverter {
 	public static DiagnosisCoreData convertToDto(DiagnosisData inputData) {
 		DiagnosisCoreData output = new DiagnosisCoreData();
 		
+		output.setDateSubmitted(inputData.getDateSubtmitted());
+		
 		DiagnosisCoreResult convertedResult = DiagnosisResultConverter.convertToDto(inputData.getDiagnosisResult());
 		output.setDiagnosisResult(convertedResult);
 		
