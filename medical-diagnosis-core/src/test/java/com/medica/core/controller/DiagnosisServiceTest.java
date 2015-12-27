@@ -15,7 +15,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.medica.core.controller.impl.DefaultDiagnosisCoreService;
 import com.medica.core.domain.DiagnosisCoreData;
-import com.medica.core.domain.DiagnosisCoreResult;
 import com.medica.core.domain.communication.analyse.AnalyseRequest;
 import com.medica.core.domain.communication.learn.LearnRequest;
 import com.medica.core.domain.communication.perform.PerformRequest;
@@ -56,7 +55,7 @@ public class DiagnosisServiceTest {
 	public void shouldCallLearnService() {
 		diagnosisService.learn(new LearnRequest());
 		
-		verify(learnService, times(1)).generateRules(Mockito.anyListOf(DiagnosisCoreResult.class));
+		verify(learnService, times(1)).generateRules(Mockito.anyListOf(DiagnosisCoreData.class));
 	}
 	
 	@Test

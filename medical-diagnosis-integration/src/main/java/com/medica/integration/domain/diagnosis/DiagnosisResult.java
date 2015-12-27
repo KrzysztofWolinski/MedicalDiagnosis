@@ -18,10 +18,10 @@ import com.medica.integration.domain.user.User;
 public class DiagnosisResult extends EntityLongId {
 
 	@NotNull
-	private Boolean rated = false;
+	private boolean rated = false;
 	
 	@NotNull
-	private Boolean recentlyAdded = true;
+	private boolean recentlyAdded = true;
 	
 	@NotNull
 	@ManyToOne

@@ -22,5 +22,4 @@ public class CoreDataPiece {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
 }

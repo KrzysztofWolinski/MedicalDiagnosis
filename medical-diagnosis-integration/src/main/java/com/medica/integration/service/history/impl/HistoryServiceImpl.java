@@ -182,10 +182,17 @@ public class HistoryServiceImpl implements HistoryService {
 			}
 
 			DiagnosisResult diagnosisResult = retrivedData.getDiagnosisResult();
+			
+			if (diagnosisResult == null) {
+				diagnosisResult = new DiagnosisResult();
+			}
+			
 			diagnosisResult.setConditionsProbablity(conditionProbabilityList);
 			diagnosisResult.setRated(true);
 			
-			this.diagnosisResultRepository.save(diagnosisResult);
+			retrivedData.setDiagnosisResult(diagnosisResult);
+			
+			this.diagnosisDataRepository.save(retrivedData);
 		}
 		
 	}

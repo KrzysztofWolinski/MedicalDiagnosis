@@ -45,7 +45,7 @@ public class DiagnosisSchedulerTest {
 	private DiagnosisScheduler diagnosisScheduler;
 	
 	@Test
-	public void shouldInitializeContext() {
+	public void shouldCallEveryMethodNecessary() {
 		when(diagnosisDataRepository.findRatedData()).thenReturn(Arrays.asList(new DiagnosisData()));
 
 		LearnResponse mockResponse = new LearnResponse();

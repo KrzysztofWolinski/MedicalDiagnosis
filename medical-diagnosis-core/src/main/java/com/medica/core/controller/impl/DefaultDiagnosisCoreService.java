@@ -43,7 +43,7 @@ public class DefaultDiagnosisCoreService implements DiagnosisCoreService {
 
 	public LearnResponse learn(LearnRequest request) {
 		LearnResponse response = new LearnResponse();
-		List<DiagnosisCoreResult> inputData = request.getResults();
+		List<DiagnosisCoreData> inputData = request.getData();
 		
 		List<DiagnosisCoreRule> generatedRules = learnService.generateRules(inputData);
 		
