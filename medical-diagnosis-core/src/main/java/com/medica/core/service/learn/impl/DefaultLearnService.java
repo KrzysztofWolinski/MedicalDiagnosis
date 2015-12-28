@@ -1,6 +1,7 @@
 package com.medica.core.service.learn.impl;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -27,10 +28,15 @@ public class DefaultLearnService implements LearnService {
 
 	private static final String TOTAL_COUNT_KEY = "TOTAL";
 	
-	private static final int MAX_DIV_COUNT = 10;
-	private static final int INIT_DIV_COUNT = 2;
-	private static final float TARGET_QUALIFYING_SHARE = 0.75f;
-	private static final float MIN_QUALIFYING_SHARE = 0.5f;
+	private final int DIV_COUNT;
+	private final float TARGET_QUALIFYING_SHARE;
+	private final float MIN_QUALIFYING_SHARE;
+	
+	public DefaultLearnService(int divCount, float targetQualifyingShare, float minQualifyingShare) {
+		this.DIV_COUNT = divCount;
+		this.TARGET_QUALIFYING_SHARE = targetQualifyingShare;
+		this.MIN_QUALIFYING_SHARE = minQualifyingShare;
+	}
 	
 	@Override
 	public List<DiagnosisCoreRule> generateRules(List<DiagnosisCoreData> allDataList) {
@@ -71,11 +77,12 @@ public class DefaultLearnService implements LearnService {
 					while (currentQualifyingShare >= MIN_QUALIFYING_SHARE) {
 						List<Range> qualifyingRanges = new ArrayList<Range>(); 
 								
+						// TODO refactor
 						for (Range range : ranges) {
 							BigDecimal totalCount = new BigDecimal(range.getCount(TOTAL_COUNT_KEY));
 							BigDecimal conditionCount = new BigDecimal(range.getCount(condition));
 							
-							BigDecimal share = conditionCount.divide(totalCount);	// TODO cast float
+							BigDecimal share = conditionCount.divide(totalCount, 5, RoundingMode.HALF_UP);
 							
 							if (share.floatValue() >= currentQualifyingShare) {
 								qualifyingRanges.add(range);
@@ -102,58 +109,102 @@ public class DefaultLearnService implements LearnService {
 					}
 				});
 				
-			} else {
+			} else if (attributeInfo.getValue().equals(DataPieceValueType.NUMBER)) {
 				List<Float> values = filteredData.stream().map(d -> Float.valueOf(d.getDataPiece(attributeInfo.getKey()).getValue())).collect(Collectors.toList());
 				Float minValue = values.stream().min((v1, v2) -> v1 < v2 ? -1 : v1 > v2 ? 1 : 0).get();
 				Float maxValue = values.stream().max((v1, v2) -> v1 < v2 ? -1 : v1 > v2 ? 1 : 0).get();
 				Float valueSpan = maxValue - minValue;
 				
-				int currentRangeCount = INIT_DIV_COUNT;
-				float currentMinShare = TARGET_QUALIFYING_SHARE;
+				int currentRangeCount = DIV_COUNT;
 				Set<Range> ranges = new HashSet<Range>();
 				
-				
-				while (currentMinShare > MIN_QUALIFYING_SHARE) {
-					for (int i = 0; i < currentRangeCount; i++) {
-						NumberRange range = new NumberRange();
-						
-						range.setMinValue(minValue + (i * (valueSpan / currentRangeCount)));
-						range.setMaxValue(range.getMinValue() + (valueSpan / currentRangeCount));
-						
-						ranges.add(range);
-					}
+				// prepare counts
+				for (int i = 0; i < currentRangeCount; i++) {
+					NumberRange range = new NumberRange();
 					
-					ranges.forEach(range -> {
-						conditions.forEach(condition -> {
-							long dataCount  = filteredData.stream().filter(d -> {
-								Float currentValue = Float.parseFloat(d.getDataPiece(attributeInfo.getKey()).getValue());
-								
-								boolean hasCondition = d.getDiagnosisResult().getConditionProbability().containsKey(condition); 
-								boolean hasValue = ((NumberRange) range).isInRange(currentValue);
-								
-								return hasCondition && hasValue;
-							}).count();
-							
-							range.addCountValue(condition, dataCount);
-						});
-						
-						long totalCount = filteredData.stream().filter(d -> {
-							Float currentValue = Float.parseFloat(d.getDataPiece(attributeInfo.getKey()).getValue());
-							return ((NumberRange) range).isInRange(currentValue);
-						}).count();
-						
-						range.addCountValue(TOTAL_COUNT_KEY, totalCount);
-					});
+					range.setMinValue(minValue + (i * (valueSpan / currentRangeCount)));
+					range.setMaxValue(range.getMinValue() + (valueSpan / currentRangeCount));
 					
+					ranges.add(range);
 				}
 				
-				//dataRanges.put(attributeInfo.getKey(), ranges);
+				ranges.forEach(range -> {
+					conditions.forEach(condition -> {
+						long dataCount  = filteredData.stream().filter(d -> {
+							Float currentValue = Float.parseFloat(d.getDataPiece(attributeInfo.getKey()).getValue());
+							
+							boolean hasCondition = d.getDiagnosisResult().getConditionProbability().containsKey(condition); 
+							boolean hasValue = ((NumberRange) range).isInRange(currentValue);
+							
+							return hasCondition && hasValue;
+						}).count();
+						
+						range.addCountValue(condition, dataCount);
+					});
+					
+					long totalCount = filteredData.stream().filter(d -> {
+						Float currentValue = Float.parseFloat(d.getDataPiece(attributeInfo.getKey()).getValue());
+						return ((NumberRange) range).isInRange(currentValue);
+					}).count();
+					
+					range.addCountValue(TOTAL_COUNT_KEY, totalCount);
+				});
+					
+				// filter ranges
+				conditions.forEach(condition -> {
+					float currentQualifyingShare = TARGET_QUALIFYING_SHARE;
+					
+					while (currentQualifyingShare >= MIN_QUALIFYING_SHARE) {
+						List<Range> qualifyingRanges = new ArrayList<Range>();
+						
+						// TODO refactor
+						for (Range range : ranges) {
+							BigDecimal totalCount = new BigDecimal(range.getCount(TOTAL_COUNT_KEY));
+							BigDecimal conditionCount = new BigDecimal(range.getCount(condition));
+							
+							BigDecimal share = BigDecimal.ZERO;
+							if (!totalCount.equals(BigDecimal.ZERO)) {
+								share = conditionCount.divide(totalCount, 5, RoundingMode.HALF_UP);
+							}
+							
+							if (share.floatValue() >= currentQualifyingShare) {
+								qualifyingRanges.add(range);
+							}
+						}
+						
+						if (qualifyingRanges.isEmpty()) {
+							currentQualifyingShare--;
+							continue;
+						} else {
+							
+							qualifyingRanges = mergeAdjacentRanges(qualifyingRanges);
+							
+							if (dataRanges.get(condition) == null) {
+								Map<String, List<Range>> attributeMap = new HashMap<String, List<Range>>();
+								attributeMap.put(attributeInfo.getKey(), qualifyingRanges);
+								
+								dataRanges.put(condition, attributeMap);
+							} else if (dataRanges.get(condition).get(attributeInfo.getKey()) == null) {
+								dataRanges.get(condition).put(attributeInfo.getKey(), qualifyingRanges);
+							} else {
+								dataRanges.get(condition).get(attributeInfo.getKey()).addAll(qualifyingRanges);
+							}
+							
+							break;
+						}
+					}
+					
+				});
+				
+				
+				
 			}
-			
 			
 		}
 		
-		return convertRangesToRules(dataRanges);
+		List<DiagnosisCoreRule> rules = convertRangesToRules(dataRanges);
+		
+		return evaluateRulesProbability(rules, filteredData);
 	}
 
 	private List<DiagnosisCoreData> filterOutNonRatedData(List<DiagnosisCoreData> allDataList) {
@@ -191,12 +242,35 @@ public class DefaultLearnService implements LearnService {
 		}
 	}
 	
+	private List<Range> mergeAdjacentRanges(List<Range> ranges) {
+		List<Range> mergedRanges = new ArrayList<Range>();
+
+		List<NumberRange> numberRanges = ranges.stream()
+				.map(r -> (NumberRange) r)
+				.sorted((r1, r2) -> Math.round(r1.getMinValue() - r2.getMinValue()))
+				.collect(Collectors.toList());
+		
+		for (NumberRange range : numberRanges) {
+			if (mergedRanges.isEmpty()) {
+				mergedRanges.add(range);
+			} else {
+				NumberRange lastMergedRange = (NumberRange)(mergedRanges.get(mergedRanges.size() - 1));
+				if (lastMergedRange.getMaxValue().equals(range.getMinValue())) {
+					lastMergedRange.setMaxValue(range.getMaxValue());
+				} else {
+					mergedRanges.add(range);
+				}
+			}
+		}
+		
+		return mergedRanges;
+	}
+	
 	private List<DiagnosisCoreRule> convertRangesToRules(Map<String, Map<String, List<Range>>> dataRanges) {
 		List<DiagnosisCoreRule> rules = new ArrayList<>();
 		
 		for (Map.Entry<String, Map<String, List<Range>>> conditionMap : dataRanges.entrySet()) {
 			DiagnosisCoreRule newRule = new DiagnosisCoreRule();
-			// TODO probability?
 			newRule.setDecision(conditionMap.getKey());
 			
 			List<Expression> expressions = conditionMap.getValue().entrySet().stream().map(attributeRanges -> {
@@ -231,18 +305,49 @@ public class DefaultLearnService implements LearnService {
 					}
 				});
 				
-				return container;
+				if (container.getExpressions().size() > 1) {
+					return container;
+				} else {
+					return container.getExpressions().get(0);
+				}
 			}).collect(Collectors.toList());
 
-			OrContainer conditionExpression = new OrContainer();
-			conditionExpression.setExpressions(expressions);
-			
-			newRule.setExpression(conditionExpression);
+			if (expressions.size() > 1) {
+				OrContainer conditionExpression = new OrContainer();
+				conditionExpression.setExpressions(expressions);
+				
+				newRule.setExpression(conditionExpression);
+			} else {
+				newRule.setExpression(expressions.get(0));
+			}
 			
 			rules.add(newRule);
 		}
 		
-		return rules;	
+		return rules;
 	}
 	
+	private List<DiagnosisCoreRule> evaluateRulesProbability(List<DiagnosisCoreRule> rules, List<DiagnosisCoreData> dataList) {
+		
+		rules.forEach(rule -> {
+			int correctAsignmentCount = 0;
+			int incorrectAsignmentCount = 0;
+			
+			for (DiagnosisCoreData data : dataList) {
+				boolean result = rule.evaluate(data);
+				
+				if (data.getDiagnosisResult().getConditionProbability().containsKey(rule.getDecision()) == result) {
+					correctAsignmentCount++;
+				} else {
+					incorrectAsignmentCount++;
+				}
+			}
+			
+			int probability = (100 * correctAsignmentCount) / (correctAsignmentCount + incorrectAsignmentCount);
+			
+			rule.setProbability(probability);
+		});
+		
+		return rules;
+	}
 }

@@ -6,7 +6,6 @@ import static org.junit.Assert.assertThat;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import com.medica.core.domain.CoreDataPiece;
@@ -17,7 +16,11 @@ import com.medica.core.service.learn.impl.DefaultLearnService;
 
 public class DefaultLearnServiceTest {
 
-	LearnService learnService = new DefaultLearnService();
+	private static final int DIV_COUNT = 10;
+	private static final float TARGET_QUALIFYING_SHARE = 0.75f;
+	private static final float MIN_QUALIFYING_SHARE = 0.5f;
+	
+	LearnService learnService = new DefaultLearnService(DIV_COUNT, TARGET_QUALIFYING_SHARE, MIN_QUALIFYING_SHARE);
 	
 	@Test
 	public void shouldReturnEmptyRuleSetForEmptyInputDataList() {
@@ -35,7 +38,6 @@ public class DefaultLearnServiceTest {
 	}
 	
 	@Test
-	@Ignore
 	public void shouldReturnSingleRuleForNumberOnlySampleInputDataList() {
 		List<DiagnosisCoreRule> result = learnService.generateRules(getNumbersOnlySimpleDataList());
 		
@@ -43,12 +45,12 @@ public class DefaultLearnServiceTest {
 		assertThat(result.size(), is(1));
 	}
 	
-//	@Test
-//	public void shouldReturnSomeRuleSetForSimpleSampleInputDataList() {
-//		List<DiagnosisCoreRule> result = learnService.generateRules(getSampleDataList());
-//		
-//		assertThat(result.isEmpty(), is(false));
-//	}
+	@Test
+	public void shouldReturnSomeRuleSetForSimpleSampleInputDataList() {
+		List<DiagnosisCoreRule> result = learnService.generateRules(getSampleDataList());
+		
+		assertThat(result.isEmpty(), is(false));
+	}
 	
 	private List<DiagnosisCoreData> getEmptyDataList() {
 		List<DiagnosisCoreData> emptyDataList = new ArrayList<DiagnosisCoreData>();
