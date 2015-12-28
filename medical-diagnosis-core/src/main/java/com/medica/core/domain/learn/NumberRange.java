@@ -2,23 +2,23 @@ package com.medica.core.domain.learn;
 
 public class NumberRange extends Range {
 
-	private float minValue;
+	private Float minValue;
 	
-	private float maxValue;
+	private Float maxValue;
 
 	public NumberRange() {
 		super();
 	}
 	
-	public float getMinValue() {
+	public Float getMinValue() {
 		return minValue;
 	}
 
-	public void setMinValue(float minValue) {
+	public void setMinValue(Float minValue) {
 		this.minValue = minValue;
 	}
 
-	public float getMaxValue() {
+	public Float getMaxValue() {
 		return maxValue;
 	}
 

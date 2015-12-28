@@ -1,5 +1,6 @@
 package com.medica.core.service.learn.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -15,6 +16,11 @@ import com.medica.core.domain.learn.NumberRange;
 import com.medica.core.domain.learn.Range;
 import com.medica.core.domain.learn.StringRange;
 import com.medica.core.domain.rule.DiagnosisCoreRule;
+import com.medica.core.domain.rule.components.AndContainer;
+import com.medica.core.domain.rule.components.Expression;
+import com.medica.core.domain.rule.components.Operators;
+import com.medica.core.domain.rule.components.OrContainer;
+import com.medica.core.domain.rule.components.SimpleExpression;
 import com.medica.core.service.learn.LearnService;
 
 public class DefaultLearnService implements LearnService {
@@ -29,12 +35,11 @@ public class DefaultLearnService implements LearnService {
 	@Override
 	public List<DiagnosisCoreRule> generateRules(List<DiagnosisCoreData> allDataList) {
 		List<DiagnosisCoreData> filteredData = filterOutNonRatedData(allDataList);
-		int recordCount = filteredData.size();
 		
 		Map<String, DataPieceValueType> attibutesInfo = getAttibutesInfo(filteredData);
 		Set<String> conditions = getConditions(filteredData);
 		
-		Map<String, Set<Range>> dataRanges = new HashMap<String, Set<Range>>();
+		Map<String, Map<String, List<Range>>> dataRanges = new HashMap<String, Map<String, List<Range>>>();
 		
 		for (Map.Entry<String, DataPieceValueType> attributeInfo : attibutesInfo.entrySet()) {
 			
@@ -59,8 +64,44 @@ public class DefaultLearnService implements LearnService {
 					long totalCount = filteredData.stream().filter(d -> d.getDataPiece(attributeInfo.getKey()).getValue().equals(currentAttributeValue)).count();
 					range.addCountValue(TOTAL_COUNT_KEY, totalCount);
 				});
+
+				conditions.forEach(condition -> {
+					float currentQualifyingShare = TARGET_QUALIFYING_SHARE;
+					
+					while (currentQualifyingShare >= MIN_QUALIFYING_SHARE) {
+						List<Range> qualifyingRanges = new ArrayList<Range>(); 
+								
+						for (Range range : ranges) {
+							BigDecimal totalCount = new BigDecimal(range.getCount(TOTAL_COUNT_KEY));
+							BigDecimal conditionCount = new BigDecimal(range.getCount(condition));
+							
+							BigDecimal share = conditionCount.divide(totalCount);	// TODO cast float
+							
+							if (share.floatValue() >= currentQualifyingShare) {
+								qualifyingRanges.add(range);
+							}
+						}
+						
+						if (qualifyingRanges.isEmpty()) {
+							currentQualifyingShare--;
+							continue;
+						} else {
+							if (dataRanges.get(condition) == null) {
+								Map<String, List<Range>> attributeMap = new HashMap<String, List<Range>>();
+								attributeMap.put(attributeInfo.getKey(), qualifyingRanges);
+								
+								dataRanges.put(condition, attributeMap);
+							} else if (dataRanges.get(condition).get(attributeInfo.getKey()) == null) {
+								dataRanges.get(condition).put(attributeInfo.getKey(), qualifyingRanges);
+							} else {
+								dataRanges.get(condition).get(attributeInfo.getKey()).addAll(qualifyingRanges);
+							}
+							
+							break;
+						}
+					}
+				});
 				
-				dataRanges.put(attributeInfo.getKey(), ranges);
 			} else {
 				List<Float> values = filteredData.stream().map(d -> Float.valueOf(d.getDataPiece(attributeInfo.getKey()).getValue())).collect(Collectors.toList());
 				Float minValue = values.stream().min((v1, v2) -> v1 < v2 ? -1 : v1 > v2 ? 1 : 0).get();
@@ -106,13 +147,13 @@ public class DefaultLearnService implements LearnService {
 					
 				}
 				
-				dataRanges.put(attributeInfo.getKey(), ranges);
+				//dataRanges.put(attributeInfo.getKey(), ranges);
 			}
 			
 			
 		}
 		
-		return null;
+		return convertRangesToRules(dataRanges);
 	}
 
 	private List<DiagnosisCoreData> filterOutNonRatedData(List<DiagnosisCoreData> allDataList) {
@@ -150,10 +191,58 @@ public class DefaultLearnService implements LearnService {
 		}
 	}
 	
-	private List<DiagnosisCoreRule> convertRangesToRules(Map<String, Set<Range>> ranges) {
-		List<DiagnosisCoreRule> rules = new ArrayList<DiagnosisCoreRule>();
+	private List<DiagnosisCoreRule> convertRangesToRules(Map<String, Map<String, List<Range>>> dataRanges) {
+		List<DiagnosisCoreRule> rules = new ArrayList<>();
 		
-		return rules;
+		for (Map.Entry<String, Map<String, List<Range>>> conditionMap : dataRanges.entrySet()) {
+			DiagnosisCoreRule newRule = new DiagnosisCoreRule();
+			// TODO probability?
+			newRule.setDecision(conditionMap.getKey());
+			
+			List<Expression> expressions = conditionMap.getValue().entrySet().stream().map(attributeRanges -> {
+				OrContainer container = new OrContainer();
+				
+				attributeRanges.getValue().forEach(range -> {					
+					if (range instanceof StringRange) {
+						SimpleExpression expression = new SimpleExpression();
+						
+						expression.setAttributeName(attributeRanges.getKey());
+						expression.setOperator(Operators.EQUAL);
+						expression.setValue(((StringRange) range).getName());
+						
+						container.addExpression(expression);
+					} else if (range instanceof NumberRange) {
+						AndContainer mainExpression = new AndContainer();
+						
+						SimpleExpression smallerExpression = new SimpleExpression();
+						smallerExpression.setAttributeName(attributeRanges.getKey());
+						smallerExpression.setOperator(Operators.SMALLER_THAN);
+						smallerExpression.setValue(((NumberRange) range).getMaxValue().toString());
+						
+						SimpleExpression greaterExpression = new SimpleExpression();
+						greaterExpression.setAttributeName(attributeRanges.getKey());
+						greaterExpression.setOperator(Operators.GREATER_THAN);
+						greaterExpression.setValue(((NumberRange) range).getMinValue().toString());
+						
+						mainExpression.addExpression(smallerExpression);
+						mainExpression.addExpression(greaterExpression);
+						
+						container.addExpression(mainExpression);
+					}
+				});
+				
+				return container;
+			}).collect(Collectors.toList());
+
+			OrContainer conditionExpression = new OrContainer();
+			conditionExpression.setExpressions(expressions);
+			
+			newRule.setExpression(conditionExpression);
+			
+			rules.add(newRule);
+		}
+		
+		return rules;	
 	}
 	
 }

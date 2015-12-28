@@ -14,6 +14,10 @@ public abstract class Range {
 	public Map<String, Long> getCountMap() {
 		return conditionCountMap;
 	}
+	
+	public Long getCount(String name) {
+		return conditionCountMap.get(name);
+	}
 
 	public void setCountMap(Map<String, Long> countMap) {
 		this.conditionCountMap = countMap;
